@@ -1,0 +1,132 @@
+.sign__in__input {
+  background: rgba(255, 255, 255, 0.6980392157);
+  border-radius: 10px;
+  font-weight: 600;
+  text-align: left;
+  color: #135F55;
+  border: none;
+  outline: none;
+  padding: 20px;
+  font-size: 18px;
+  line-height: 21.09px;
+
+  &::placeholder {
+    color: #135F55;
+    letter-spacing: 0;
+    font-weight: 700;
+    text-align: left;
+    font-size: 18px;
+    line-height: 21.09px;
+  }
+
+  &:focus-visible {
+    background: #fff;
+  }
+}
+
+
+.sign__up__input {
+  border-radius: 10px;
+  border: 2px solid #135F55;
+  background: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 21.09px;
+  text-align: left;
+  color: #135F55;
+  outline: none;
+  padding: 20px;
+  width: 42%;
+  margin: 10px 30px;
+
+  &::placeholder {
+    color: #135F55;
+  }
+
+  &:focus-visible {
+    background: rgba(255, 255, 255, 0.6980392157);
+  }
+
+
+  &__file {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+
+    &__label {
+      border: 2px solid #135F55;
+      background: #FFFFFF;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 21.09px;
+      padding: 77px 131px;
+      color: #135F55;
+      cursor: pointer;
+    }
+
+    &__img {
+      width: 313.06px;
+      height: 178.8px;
+      object-fit: cover;
+      position: absolute;
+      top: 262px;
+      border-radius: 10px;
+      object-position: center;
+    }
+  }
+
+  &__card {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.09px;
+    text-align: left;
+    border-radius: 10px;
+    border: 2px solid #135F55;
+    background: #fff;
+    color: #135F55;
+    outline: none;
+    padding: 20px;
+
+    &::placeholder {
+      color: #135F55;
+    }
+
+    &:focus-visible {
+      background: rgba(255, 255, 255, 0.6980392157);
+    }
+
+    &__date {
+      border-radius: 10px;
+      border: 2px solid #135F55;
+      background: #FFFFFF;
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 21.09px;
+      text-align: center;
+      padding: 27px;
+      width: 108px;
+      color: #135F55;
+
+      &::placeholder {
+        color: #135F55;
+      }
+
+      &:focus-visible {
+        background: rgba(255, 255, 255, 0.6980392157);
+      }
+    }
+  }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
