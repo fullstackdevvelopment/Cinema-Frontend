@@ -1,0 +1,35 @@
+.cinema__home__latest__cart{
+  width: 30%;
+  padding-top: 58px;
+}
+
+.cinema__home__latest__cart__item{
+  width: 100%;
+}
+
+.cinema__home__latest__cart__item__img{
+  width: 100%;
+  height: 519px;
+  border-radius: 15px;
+}
+
+.cinema__home__latest__cart__item__group{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cinema__home__latest__cart__item__group__title{
+  color: rgb(255, 255, 255);
+  font-family: Roboto, "sans-serif";
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: left;
+}
+
+.cinema__home__latest__cart__item__dec{
+  display: flex;
+  justify-content: end;
+}

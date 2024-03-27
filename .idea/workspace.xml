@@ -5,13 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b085ef20-0d09-4f21-88d8-37991adb6ce9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/img.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/img_1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/style/components/_button.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/style/components/_cart.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/style/layouts/_headerHome.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/style/layouts/_home.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/style/layouts/_latest.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/HomeComponent/Cart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/HomeComponent/CartHeader.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/HomeComponent/Header.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/HomeComponent/Login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/HomeComponent/Navigation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/HomeComponent/Stars.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/style/base/_core.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/style/base/_core.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/style/components/_components.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/style/components/_components.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/style/layouts/_layouts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/style/layouts/_layouts.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/style/layouts/_navigation.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/style/layouts/_navigation.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reportWebVitals.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,26 +68,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Acer/Desktop/Cinema/cinema-frontend/src/assets/images&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2023.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindowRun.ShowToolbar": "false",
+    "git-widget-placeholder": "develop",
+    "last_opened_file_path": "C:/Users/user/Downloads/Cinema-Frontend",
+    "list.type.of.created.stylesheet": "SCSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Acer\Desktop\Cinema\cinema-frontend\src\assets\images" />
@@ -98,6 +118,9 @@
       <workItem from="1711380145821" duration="610000" />
       <workItem from="1711458033510" duration="11150000" />
       <workItem from="1711471857058" duration="3000" />
+      <workItem from="1711552465861" duration="1402000" />
+      <workItem from="1711553973189" duration="653000" />
+      <workItem from="1711554673092" duration="1939000" />
     </task>
     <servers />
   </component>
