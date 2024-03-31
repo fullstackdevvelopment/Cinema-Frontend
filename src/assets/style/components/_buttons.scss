@@ -1,7 +1,7 @@
 .orange__btn {
   padding: 8px 42px;
   border-radius: 20px;
-  box-shadow: -6px -6px 22px 0 #00000080 inset;
+  box-shadow: -6px -6px 22px 0 #00000080 inset, 6px 6px 35px 0 #FFFFFF1A inset;
   background: #E8920B;
   font-size: 24px;
   font-weight: 600;
@@ -19,12 +19,12 @@
     font-weight: 600;
     line-height: 28.13px;
     color: #000;
-    box-shadow: -6px -6px 22px 0 #00000080 inset;
+    box-shadow: 6px 6px 35px 0 #FFFFFF1A inset,-6px -6px 22px 0 #00000080 inset;
   }
 
   &:active {
     background: #A56808;
-    box-shadow: -6px -6px 22px 0 #00000080 inset;
+    box-shadow: -6px -6px 22px 0 #00000080 inset,6px 6px 35px 0 #FFFFFF1A inset;
     color: #fff;
   }
 }
@@ -32,7 +32,7 @@
 .green__btn {
   padding: 8px 44px;
   background: #135F55;
-  box-shadow: -6px -6px 22px 0 #00000080 inset;
+  box-shadow: -6px -6px 22px 0 #00000080 inset, 6px 6px 35px 0 #FFFFFF1A inset;
   border-radius: 20px;
   font-size: 24px;
   font-weight: 600;
@@ -46,13 +46,13 @@
 
   &:hover {
     background: #57A99F;
-    box-shadow: 6px 6px 35px 0 #FFFFFF1A inset;
+    box-shadow: 6px 6px 35px 0 #FFFFFF1A inset, 6px 6px 35px 0 #FFFFFF1A inset;
     color: #fff;
   }
 
   &:active {
     background: #0D312D;
-    box-shadow: -6px -6px 22px 0 #00000080 inset;
+    box-shadow: -6px -6px 22px 0 #00000080 inset, 6px 6px 35px 0 #FFFFFF1A inset;
   }
 }
 
@@ -81,3 +81,4 @@
     color: #000;
   }
 }
+

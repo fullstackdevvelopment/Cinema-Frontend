@@ -92,6 +92,8 @@
     color: #135F55;
     outline: none;
     padding: 20px;
+    margin-bottom: 80px;
+    width: 100%;
 
     &::placeholder {
       color: #135F55;
@@ -112,6 +114,7 @@
       padding: 27px;
       width: 108px;
       color: #135F55;
+      outline: none;
 
       &::placeholder {
         color: #135F55;

@@ -14,12 +14,15 @@ function SignUp() {
           <p>Fill in all Fields</p>
         </div>
         <div className="sign__up__form">
-          <form>
+          <form id="signUp">
             <FileInput />
             <DataInput />
             <CardInput />
           </form>
         </div>
+      </div>
+      <div className="sign__up__btn">
+        <button className="orange__btn" type="submit" form="signUp">Done</button>
       </div>
     </div>
   );
