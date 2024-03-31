@@ -1,0 +1,42 @@
+.cinema__home__latest{
+  width: 100%;
+  height: 100%;
+  padding-top: 141px;
+  background-color: rgb(30, 30, 30);
+}
+
+.cinema__home__latest__header{
+  width: 100%;
+  height: 44px;
+}
+
+.cinema__home__latest__header__title{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cinema__home__latest__header__title__item{
+  color: rgb(217, 217, 217);
+  font-family: Roboto, "sans-serif";
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 42px;
+  text-align: left;
+}
+
+
+.cinema__home__latest__header__icone{
+  width: 26px;
+  height: 44px;
+  border-radius: 5px;
+  color: rgb(232, 146, 11);
+}
+
+.cinema__home__latest__row{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
