@@ -7,6 +7,7 @@
 .env
 .sass-cache
 .eslintrc.js
+.idea
 
 # testing
 /coverage
