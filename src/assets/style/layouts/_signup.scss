@@ -1,12 +1,22 @@
 .sign__up {
-  background: #000;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: 75px 55px 50px;
-  border-radius: 50px;
-  margin-bottom: 30px;
+  align-items: center;
+  width: 100%;
+  background: #1c2827;
+
+
+
+  &__page {
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 75px 55px 50px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+  }
 
   &__title {
     width: 100%;
@@ -61,6 +71,7 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 60px;
+      position: relative;
     }
 
     &__data {

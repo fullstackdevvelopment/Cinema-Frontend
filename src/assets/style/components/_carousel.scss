@@ -1,0 +1,24 @@
+.home__carousel {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../images/slide1.jpg");
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.carousel__block {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
