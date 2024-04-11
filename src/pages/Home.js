@@ -6,6 +6,7 @@ import Carousel from '../components/HomeComponent/Carousel';
 
 function Home() {
   return (
+<<<<<<< HEAD
     <div className="cinema__home">
       <Header />
       <Carousel />
@@ -41,6 +42,14 @@ function Home() {
           </div>
         </div>
       </div>
+=======
+    <div>
+      <p>45</p>
+      <p>45</p>
+      <p>45</p>
+      <p>46</p>
+      <div>Hello World bzxhsggqxjgi</div>
+>>>>>>> 40f1f8a1da973610ad72e962d18d0d57512ffea4
     </div>
   );
 }
