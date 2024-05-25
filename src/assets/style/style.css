@@ -1,10 +1,9 @@
 /*
 Error: wrong number of arguments (1 for 3) for `rgb'
-        on line 76 of components/_buttons.scss
+        on line 77 of components/_buttons.scss
         from line 1 of components/_components.scss
         from line 3 of style.scss
 
-71: //        }
 72: //
 73: //        &__signUp {
 74: //          text-align: left;
@@ -15,9 +14,10 @@ Error: wrong number of arguments (1 for 3) for `rgb'
 79: //          box-shadow: -6px -6px 22px 0 #00000080 inset;
 80: //          cursor: pointer;
 81: //          transition: all 0.4s;
+82: //
 
 Backtrace:
-components/_buttons.scss:76
+components/_buttons.scss:77
 components/_components.scss:1
 style.scss:3
 C:/Ruby32-x64/lib/ruby/gems/3.2.0/gems/sass-3.7.4/lib/sass/script/tree/funcall.rb:311:in `reformat_argument_error'
@@ -109,4 +109,4 @@ C:/Ruby32-x64/bin/sass:32:in `<main>'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: wrong number of arguments (1 for 3) for `rgb'\A         on line 76 of components/_buttons.scss\A         from line 1 of components/_components.scss\A         from line 3 of style.scss\A \A 71: //        }\A 72: //\A 73: //        &__signUp {\A 74: //          text-align: left;\A 75: //          list-style-type: none;\A 76: //          background: #E8920B;\A 77: //          border-radius: 20px;\A 78: //          padding: 8px 42px;\A 79: //          box-shadow: -6px -6px 22px 0 #00000080 inset;\A 80: //          cursor: pointer;\A 81: //          transition: all 0.4s;"; }
+  content: "Error: wrong number of arguments (1 for 3) for `rgb'\A         on line 77 of components/_buttons.scss\A         from line 1 of components/_components.scss\A         from line 3 of style.scss\A \A 72: //\A 73: //        &__signUp {\A 74: //          text-align: left;\A 75: //          list-style-type: none;\A 76: //          background: #E8920B;\A 77: //          border-radius: 20px;\A 78: //          padding: 8px 42px;\A 79: //          box-shadow: -6px -6px 22px 0 #00000080 inset;\A 80: //          cursor: pointer;\A 81: //          transition: all 0.4s;\A 82: //"; }

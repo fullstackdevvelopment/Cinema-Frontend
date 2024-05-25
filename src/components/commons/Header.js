@@ -1,23 +1,43 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/img.svg';
 
 function Header() {
   return (
     <div className="header">
       <div className="container">
         <nav className="nav">
-          <div className="nav__logo">
+          <figure className="nav__logo">
             <img src={logo} alt="logo" />
-          </div>
+          </figure>
           <div className="nav__link">
-            <NavLink to="#">Home</NavLink>
-            <NavLink to="#">Catalog</NavLink>
-            <NavLink to="#">Contact Us</NavLink>
+            <ul>
+              <li>
+                <NavLink to="#">Home</NavLink>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <NavLink to="#">Catalog</NavLink>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <NavLink to="#">Contact Us</NavLink>
+              </li>
+            </ul>
           </div>
           <div className="nav__button">
-            <NavLink to="#">Sign In</NavLink>
-            <NavLink className="orange__btn" to="#">Sign Up</NavLink>
+            <ul>
+              <li>
+                <NavLink to="#">Sign In</NavLink>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <NavLink className="orange__btn" to="#">Sign Up</NavLink>
+              </li>
+            </ul>
           </div>
         </nav>
       </div>
