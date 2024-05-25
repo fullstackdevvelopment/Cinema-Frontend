@@ -13,12 +13,12 @@ function Header() {
           <div className="nav__link">
             <ul>
               <li>
-                <NavLink to="#">Home</NavLink>
+                <NavLink to="/home">Home</NavLink>
               </li>
             </ul>
             <ul>
               <li>
-                <NavLink to="#">Catalog</NavLink>
+                <NavLink to="/catalog">Catalog</NavLink>
               </li>
             </ul>
             <ul>
@@ -35,7 +35,7 @@ function Header() {
             </ul>
             <ul>
               <li>
-                <NavLink className="orange__btn" to="#">Sign Up</NavLink>
+                <NavLink to="/signUp" className="orange__btn">Sign Up</NavLink>
               </li>
             </ul>
           </div>
