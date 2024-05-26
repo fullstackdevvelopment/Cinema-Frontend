@@ -1,0 +1,53 @@
+.reset__password {
+  text-align: center;
+  padding-top: 50px;
+  align-items: center;
+  background-color: rgb(30, 30, 30);
+  .reset__password__box {
+    width: 559px;
+    height: 424px;
+    background-color: #000000;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 100px;
+    & button{
+      margin-top: 30px;
+      width: 440px;
+      height: 50px;
+    }
+
+    .reset__password__title {
+      text-align: center;
+      margin-top: 45px;
+      font-size: 42px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .reset__password__p {
+      padding-top: 30px;
+      display: flex;
+      justify-content: center;
+
+      .reset__password__text {
+        text-align: center;
+        width: 503px;
+        height: 42px;
+        color: #ffffff;
+      }
+    }
+
+    .reset__password__input__div {
+      padding-top: 30px;
+      text-align: center;
+      & input{
+        width: 440px;
+        height: 50px;
+      }
+    }
+    .reset__password__btn {
+      padding-top: 30px;
+    }
+  }
+
+}

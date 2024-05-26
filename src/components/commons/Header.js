@@ -26,11 +26,16 @@ function Header() {
                 <NavLink to="#">Contact Us</NavLink>
               </li>
             </ul>
+            <ul>
+              <li>
+                <NavLink to="/ticket" className="green__btn">Ticket</NavLink>
+              </li>
+            </ul>
           </div>
           <div className="nav__button">
             <ul>
               <li>
-                <NavLink to="#">Sign In</NavLink>
+                <NavLink to="/signIn">Sign In</NavLink>
               </li>
             </ul>
             <ul>
