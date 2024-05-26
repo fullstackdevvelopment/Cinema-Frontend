@@ -1,0 +1,40 @@
+.film {
+  margin-top: 80px;
+  &__stars {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__title {
+    font-size: 42px;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+  }
+  &__box {
+    display: flex;
+    &__image {
+    }
+    &__movie {
+      margin: 0 60px;
+      &__stars {
+        display: flex;
+        justify-content: flex-end;
+      }
+      &__video {
+
+      }
+      &__shots {
+        margin-top: 75px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+    }
+  }
+  .film__box__users {
+    display: flex;
+    &__item {
+      margin: 20px 3px;
+    }
+  }
+}
