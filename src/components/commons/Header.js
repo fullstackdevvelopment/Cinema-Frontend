@@ -11,13 +11,13 @@ function Header() {
             <img src={logo} alt="logo" />
           </div>
           <div className="nav__link">
-            <NavLink to="#">Home</NavLink>
-            <NavLink to="#">Catalog</NavLink>
-            <NavLink to="#">Contact Us</NavLink>
+            <NavLink to="/home">Home</NavLink>
+            <NavLink to="/catalog">Catalog</NavLink>
+            <NavLink to="/contactus">Contact Us</NavLink>
           </div>
           <div className="nav__button">
-            <NavLink to="#">Sign In</NavLink>
-            <NavLink className="orange__btn" to="#">Sign Up</NavLink>
+            <NavLink to="/signin">Sign In</NavLink>
+            <NavLink className="orange__btn" to="/signup">Sign Up</NavLink>
           </div>
         </nav>
       </div>

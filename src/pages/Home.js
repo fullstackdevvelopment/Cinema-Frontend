@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/HomeComponent/Header';
+import Header from '../components/commons/Header';
 import CartHeader from '../components/HomeComponent/CartHeader';
 import Cart from '../components/HomeComponent/Cart';
 import Carousel from '../components/HomeComponent/Carousel';
