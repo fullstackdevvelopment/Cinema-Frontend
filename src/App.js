@@ -7,6 +7,7 @@ import Catalog from './pages/Catalog';
 import Ticket from './pages/Ticket';
 import SignIn from './pages/SignIn';
 import Reset from './pages/Reset';
+import BuyTicket1 from './pages/BuyTickets/BuyTicket1';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/film" element={<Film />} />
         <Route path="/ticket" element={<Ticket />} />
+        <Route path="/buyticket1" element={<BuyTicket1 />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/reset" element={<Reset />} />
         <Route path="/signup" element={<SignUp />} />

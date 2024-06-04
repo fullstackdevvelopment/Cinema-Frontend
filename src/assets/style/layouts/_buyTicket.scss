@@ -1,0 +1,78 @@
+.buyTicket {
+  background: #1c2827;
+  & button{
+margin: 50px 0;
+  }
+}
+
+.buyTicket__block {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: 100%;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 100px 0;
+
+    &__img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 45%;
+      height: 590px;
+
+      & img {
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+      }
+    }
+
+    &__desc {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      width: 60%;
+      padding-left: 46px;
+
+      & h2 {
+        margin-bottom: 20px;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      & p {
+        margin-bottom: 20px;
+      }
+
+      &__foot {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: 90px;
+        background: #000000;
+        padding: 10px 90px 10px 40px;
+        border-radius: 20px;
+      }
+
+      & h1 {
+      }
+    }
+  }
+}
+
+.ticket__select {
+  display: flex;
+  justify-content: center;
+}
+.buyTicket__button{
+  display: flex;
+  justify-content: flex-end;
+}

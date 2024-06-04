@@ -8,12 +8,16 @@ function Header() {
       <div className="container">
         <nav className="nav">
           <div className="nav__logo">
-            <img src={logo} alt="logo" />
+            <NavLink to="/home">
+              <img src={logo} alt="logo" />
+            </NavLink>
           </div>
           <div className="nav__link">
             <NavLink to="/home">Home</NavLink>
             <NavLink to="/catalog">Catalog</NavLink>
             <NavLink to="/contactus">Contact Us</NavLink>
+            {/* eslint-disable-next-line react/button-has-type */}
+            <NavLink to="/buyTicket1"><button className="green__btn">Ticket</button></NavLink>
           </div>
           <div className="nav__button">
             <NavLink to="/signin">Sign In</NavLink>
