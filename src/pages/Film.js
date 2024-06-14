@@ -5,6 +5,7 @@ import users from '../assets/data/users';
 import filmShots from '../assets/data/filmShots';
 import Stars from '../components/HomeComponent/Stars';
 import Wrapper from '../components/commons/Wrapper';
+import Comments from '../components/Comment/Comments';
 
 function Film() {
   return (
@@ -40,6 +41,46 @@ function Film() {
               </div>
             </div>
           </div>
+          <div className="details-card">
+            <div className="details">
+              <h2>Detalis</h2>
+              <div className="details__card__line" />
+              <div className="details-content">
+                <div>
+                  <strong>Detalis:</strong>
+                  USA
+                </div>
+                <div className="details__card__line" />
+                <div>
+                  <strong>Language:</strong>
+                  English
+                </div>
+                <div className="details__card__line" />
+                <div>
+                  <strong>Relise Date:</strong>
+                  15 Feb 2022
+                </div>
+                <div className="details__card__line" />
+                <div>
+                  <strong>Director:</strong>
+                  Jpn Smiths
+                </div>
+                <div className="details__card__line" />
+              </div>
+            </div>
+            <div className="storyline">
+              <h2>Storyline</h2>
+              <div className="details__card__line" />
+              <p>
+                In front of a young climber, Kelly, her friend is killed. The heroine manages to
+                record it on video, but the criminals notice her. The girl runs to the rock in the
+                hope that the killers wont be able to find her there. However, the climb to the
+                top turns out to be unpredictable, and Kelly realizes that she has fallen into a
+                real trap.
+              </p>
+            </div>
+          </div>
+          <div><Comments /></div>
         </div>
       </div>
     </Wrapper>

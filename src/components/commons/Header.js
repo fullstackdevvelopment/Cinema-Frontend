@@ -15,7 +15,7 @@ function Header() {
           <div className="nav__link">
             <NavLink to="/home">Home</NavLink>
             <NavLink to="/catalog">Catalog</NavLink>
-            <NavLink to="/contactus">Contact Us</NavLink>
+            <NavLink to="/contact">Contact Us</NavLink>
             {/* eslint-disable-next-line react/button-has-type */}
             <NavLink to="/buyTicket1"><button className="green__btn">Ticket</button></NavLink>
           </div>

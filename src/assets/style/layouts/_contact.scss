@@ -1,0 +1,139 @@
+.contact {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: #1c2827;
+  padding-top: 200px;
+  position: relative;
+  top: -82px;
+
+  &__page {
+    padding-top: 30px;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    margin-bottom: 30px;
+
+    &__message__title {
+      margin-top: 80px;
+      font-weight: 600;
+      font-size: 18px;
+      color: #E8920B;
+    }
+
+    .connect {
+      margin-top: 30px;
+      font-size: 18px;
+      font-weight: 900;
+      color: #ffffff;
+    }
+  }
+
+  &__title {
+    font-size: 42px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  &__info {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+
+    &__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 0 40px;
+
+      &__icon {
+        margin-bottom: 20px;
+      }
+
+      &__title {
+        margin-bottom: 20px;
+        font-weight: 600;
+        font-size: 18px;
+      }
+
+      &__infos {
+        font-weight: 600;
+        font-size: 18px;
+      }
+    }
+
+    &__item:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      width: 1px;
+      background-color: #E8920B;
+    }
+  }
+
+  &__inputs {
+    &__input {
+      margin-top: 30px;
+      display: flex;
+
+      &__item {
+        margin: 0 10px;
+
+        &__input {
+          width: 332px;
+          height: 60px;
+          border-radius: 15px;
+          background-color: #ffffff;
+          border: none;
+          padding: 0 30px;
+          font-size: 24px;
+        }
+
+        &__input::placeholder {
+          font-size: 24px;
+          font-weight: 600;
+          color: #135F55;
+        }
+
+      }
+    }
+    &__message {
+      margin-bottom: 30px;
+      padding: 20px 30px;
+      margin-top: 10px;
+      width: 683px;
+      height: 387px;
+      border-radius: 15px;
+      font-size: 24px;
+    }
+    &__message::placeholder {
+      font-weight: 600;
+      font-size: 24px;
+      color: #135F55;
+    }
+  }
+
+  &__icons {
+    display: flex;
+    margin-top: 30px;
+    &__item {
+      margin: 0 10px;
+      background-color: #ffffff;
+      width: 56px;
+      height: 56px;
+      border-radius: 15px;
+    }
+    &__item img {
+      padding: 4px 4px;
+    }
+  }
+}
