@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
+import React from 'react';
 import { FaCircle } from 'react-icons/fa';
 import map from '../../assets/images/map.png';
 import CardNumber from '../../assets/data/CardNumber';
 
-function CardInput() {
-  const [cardName, setCardName] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
-  const [expirationMonth, setExpirationMonth] = useState('');
-  const [expirationYear, setExpirationYear] = useState('');
+function CardInput(props) {
+  const {
+    cardNumber, setCardNumber, cardHolderName, setCardHolderName,
+    selectedMonth, setSelectedMonth, selectedYear, setSelectedYear,
+    setCvv,
+  } = props;
 
   const handleCardNameChange = (e) => {
-    setCardName(e.target.value);
+    setCardHolderName(e.target.value);
   };
   const handleCardNumberChange = (e) => {
     setCardNumber(e.target.value);
   };
 
   const handleExpirationMonthChange = (e) => {
-    setExpirationMonth(e.target.value);
+    setSelectedMonth(e.target.value);
   };
 
   const handleExpirationYearChange = (e) => {
-    setExpirationYear(e.target.value);
+    setSelectedYear(e.target.value);
   };
 
+  const handleCvvChange = (e) => {
+    setCvv(e.target.value);
+  };
   return (
     <div className="sign__up__form__card">
       <div className="sign__up__form__card__block">
@@ -44,14 +47,14 @@ function CardInput() {
           </div>
           <div className="card__owner">
             <div className="card__owner__name">
-              {cardName !== '' ? <p>{ cardName }</p> : <p>Name Surname</p>}
+              {cardHolderName !== '' ? <p>{ cardHolderName }</p> : <p>Name Surname</p>}
             </div>
             <div className="card__owner__date">
-              {expirationMonth.length > 0 ? <p>{expirationMonth[0]}</p> : <p>.</p>}
-              {expirationMonth.length > 1 ? <p>{expirationMonth[1]}</p> : <p>.</p>}
+              {selectedMonth.length > 0 ? <p>{selectedMonth[0]}</p> : <p>.</p>}
+              {selectedMonth.length > 0 ? <p>{selectedMonth[1]}</p> : <p>.</p>}
               <span>/</span>
-              {expirationYear.length > 0 ? <p>{expirationYear[0]}</p> : <p>.</p>}
-              {expirationYear.length > 1 ? <p>{expirationYear[1]}</p> : <p>.</p>}
+              {selectedYear.length > 0 ? <p>{selectedYear[0]}</p> : <p>.</p>}
+              {selectedYear.length > 0 ? <p>{selectedYear[1]}</p> : <p>.</p>}
             </div>
           </div>
         </div>
@@ -66,7 +69,7 @@ function CardInput() {
           <span>-</span>
           <input placeholder="yy" className="sign__up__input__card__date" type="number" onChange={handleExpirationYearChange} />
           <span>-</span>
-          <input placeholder="CVC" className="sign__up__input__card__date" type="number" />
+          <input placeholder="CVC" className="sign__up__input__card__date" type="number" onChange={handleCvvChange} />
         </div>
       </div>
     </div>
