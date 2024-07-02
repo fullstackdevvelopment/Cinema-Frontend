@@ -80,8 +80,8 @@ function Film() {
               </p>
             </div>
           </div>
-          <div><Comments /></div>
         </div>
+        <Comments />
       </div>
     </Wrapper>
   );

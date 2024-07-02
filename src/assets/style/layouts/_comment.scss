@@ -1,12 +1,68 @@
-.comments{
-  display: flex;
-  justify-content: space-between;
-}
-.comments__page{
-  border-radius: 10%;
-  background-color: red;
-}
-.comments__title{
+.comments {
+  border-radius: 10px;
+  padding-bottom: 50px;
+  background: linear-gradient(180deg, rgba(19, 95, 85, 0.027) 6.25%, rgba(19, 95, 85, 0.0234) 13.54%, rgba(35, 35, 35, 0.18) 68%);
+  &__header{
+    padding: 50px 10px 30px 10px;
+  }
+  &__block {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__stars {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__page {
+    border-radius: 40px 0 40px 0;
+    width: calc(100% / 3 - 10px);
+    margin: 5px auto;
+    background: #FFFFFF1A;
+    padding: 10px 10px 30px 10px;
+
+    &__desc {
+      display: flex;
+      width: 100%;
+      align-items: flex-end;
+
+      &__banner {
+        display: flex;
+        width: 77%;
+        &__title {
+          width: 50%;
+
+          & h2 {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 18.75px;
+          }
+        }
+
+        &__view {
+          width: 50%;
+          display: flex;
+          justify-content: flex-end;
+
+          & p {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 18.75px;
+          }
+        }
+      }
+
+      &__img {
+        width: 23%;
+      }
+    }
+  }
+
+  &__title {
+    padding: 50px 10px;
+  }
 }
 
 
