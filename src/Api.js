@@ -22,6 +22,10 @@ class Api {
   static register(data) {
     return api.post('/users/register', data);
   }
+
+  static userData(token) {
+    return api.post('/users/single', token);
+  }
 }
 
 export default Api;

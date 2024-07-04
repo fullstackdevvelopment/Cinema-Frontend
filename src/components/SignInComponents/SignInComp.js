@@ -25,7 +25,8 @@ function SignInComp() {
     }
   }, [token, userToken]);
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
     dispatch(signIn({
       userName,
       password,
@@ -36,7 +37,7 @@ function SignInComp() {
       <div className="container">
         <div className="signIn__box">
           <h2 className="signIn__title">SIGN IN</h2>
-          <div className="signIn__inputs">
+          <form onSubmit={handleSubmit} className="signIn__inputs">
             <input
               className="signIn__input"
               placeholder="Username"
@@ -54,18 +55,18 @@ function SignInComp() {
             {' '}
             <br />
             <Link to="/reset" className="reset__title">Forgot Password?</Link>
-          </div>
-          {' '}
-          <br />
-          <h2 className="signIn__or">Or</h2>
-          <div className="software__icons">
-            {signInData.map((icon) => (
-              <div key={icon.id} className="software__icons__box">
-                <Link to={icon.url}><img className="software__icons__img" src={icon.image} alt="" /></Link>
-              </div>
-            ))}
-          </div>
-          <button onClick={handleSubmit} type="submit" className="orange__btn">Sign In</button>
+            {' '}
+            <br />
+            <h2 className="signIn__or">Or</h2>
+            <div className="software__icons">
+              {signInData.map((icon) => (
+                <div key={icon.id} className="software__icons__box">
+                  <Link to={icon.url}><img className="software__icons__img" src={icon.image} alt="" /></Link>
+                </div>
+              ))}
+            </div>
+            <button type="submit" className="orange__btn">Sign In</button>
+          </form>
         </div>
       </div>
     </div>

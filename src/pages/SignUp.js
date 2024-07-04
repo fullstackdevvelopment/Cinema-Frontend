@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import FileInput from '../components/SignUpComponents/FileInput';
 import DataInput from '../components/SignUpComponents/DataInput';
 import CardInput from '../components/SignUpComponents/CardInput';
@@ -8,6 +9,7 @@ import { register } from '../store/actions/register';
 
 function SignUp() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [photo, setPhoto] = useState(null);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -43,6 +45,7 @@ function SignUp() {
     formData.append('cvv', cvv);
     formData.append('cardHolderName', cardHolderName);
     dispatch(register(formData));
+    navigate('/home');
   }, [dispatch, photo, firstName, lastName, userName, email,
     password, city, country, address, phone,
     cardNumber, selectedMonth, selectedYear, cvv,

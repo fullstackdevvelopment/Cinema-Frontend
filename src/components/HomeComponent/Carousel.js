@@ -20,7 +20,7 @@ function Carousel() {
               <div className="carousel__block__slide__content">
                 <h2>1+1</h2>
                 <ReactStars
-                  className="ratingkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+                  className="rating"
                   count={5}
                   size={30}
                   activeColor="orange"
