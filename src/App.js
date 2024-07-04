@@ -11,6 +11,8 @@ import SignIn from './pages/SignIn';
 import Reset from './pages/Reset';
 import BuyTicket1 from './pages/BuyTickets/BuyTicket1';
 import Contact from './pages/Contact';
+import Settings from './pages/Settings';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -26,6 +28,9 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/reset" element={<Reset />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="*" element={<Navigate to="/not_found" />} />
+        <Route path="/not_found" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
