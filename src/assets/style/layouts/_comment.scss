@@ -1,6 +1,7 @@
 .comments {
   border-radius: 10px;
   padding-bottom: 50px;
+  color: white;
   background: linear-gradient(180deg, rgba(19, 95, 85, 0.027) 6.25%, rgba(19, 95, 85, 0.0234) 13.54%, rgba(35, 35, 35, 0.18) 68%);
   &__header{
     padding: 50px 10px 30px 10px;
@@ -61,7 +62,7 @@
   }
 
   &__title {
-    padding: 50px 10px;
+    color: #D9D9D9;
   }
 }
 
