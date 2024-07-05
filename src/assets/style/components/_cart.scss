@@ -1,6 +1,12 @@
 .cinema__home__latest__cart{
   width: 30%;
   padding-top: 58px;
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .cinema__home__latest__cart__item{

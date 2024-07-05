@@ -1,21 +1,29 @@
-import React from 'react';
-import cartLogo from '../../assets/images/img_1.svg';
+import React, { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Stars from './Stars';
 
-function Cart() {
+function Cart(props) {
+  const {
+    moviePhoto, title, rating, voters, movieId,
+  } = props;
+  const navigate = useNavigate();
+
+  const handleClick = useCallback(() => {
+    navigate(`/film/${movieId}`);
+  }, []);
   return (
-    <div className="cinema__home__latest__cart">
+    <div onClick={handleClick} className="cinema__home__latest__cart">
       <div className="cinema__home__latest__cart__item">
-        <img src={cartLogo} alt="" className="cinema__home__latest__cart__item__img" />
+        <img src={`http://localhost:4000/${moviePhoto}`} alt="movie" className="cinema__home__latest__cart__item__img" />
         <div className="cinema__home__latest__cart__item__group">
           <span className="cinema__home__latest__cart__item__group__title">
-            1+1
+            {title}
           </span>
-          <Stars />
+          <Stars rating={rating} />
         </div>
         <div className="cinema__home__latest__cart__item__dec">
           <p className="cinema__home__latest__cart__item__group__title">
-            180k Voters
+            {`${voters} Voters`}
           </p>
         </div>
       </div>

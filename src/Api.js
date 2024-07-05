@@ -26,6 +26,14 @@ class Api {
   static userData(token) {
     return api.post('/users/single', token);
   }
+
+  static singleMovie(movieId) {
+    return api.get(`/movie/single/${movieId}`);
+  }
+
+  static movieList(page = 1, limit = 6) {
+    return api.get(`/movie/list?page=${page}&limit=${limit}`);
+  }
 }
 
 export default Api;
