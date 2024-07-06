@@ -5,7 +5,7 @@ import Footer from './Footer';
 function Wrapper(props) {
   const { children } = props;
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
       <Header />
       {children}
       <Footer />

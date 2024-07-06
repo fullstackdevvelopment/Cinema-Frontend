@@ -43,7 +43,7 @@ function Film() {
             </div>
             <div className="film__box">
               <figure className="film__box__image">
-                <img src={`http://localhost:4000/${singleData?.photos[0].moviePhoto}`} alt="movie" />
+                <img src={`http://localhost:4000/${singleData?.photos[0]?.moviePhoto}`} alt="movie" />
                 <div className="film__box__users">
                   {singleData?.actors?.slice(0, 5)
                     .map((user) => (

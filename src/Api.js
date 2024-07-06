@@ -34,6 +34,10 @@ class Api {
   static movieList(page = 1, limit = 6) {
     return api.get(`/movie/list?page=${page}&limit=${limit}`);
   }
+
+  static categoryList() {
+    return api.get('/category/list');
+  }
 }
 
 export default Api;

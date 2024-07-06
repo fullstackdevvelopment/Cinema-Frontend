@@ -3,6 +3,7 @@ import register from './register';
 import userData from './userData';
 import singleMovie from './singleMovie';
 import movieList from './movieList';
+import categoryList from './categoryList';
 
 const reducers = {
   signIn,
@@ -10,5 +11,6 @@ const reducers = {
   userData,
   singleMovie,
   movieList,
+  categoryList,
 };
 export default reducers;

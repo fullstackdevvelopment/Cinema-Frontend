@@ -8,6 +8,7 @@ function Stars(props) {
       size={24}
       count={5}
       isHalf
+      edit={false}
       value={rating}
       color="white"
       activeColor="orange"
