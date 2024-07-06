@@ -11,7 +11,6 @@ function Catalog() {
   useEffect(() => {
     dispatch(movieList({ page: 1, limit: 6 }));
   }, [dispatch]);
-  console.log(list);
   return (
     <Wrapper className="cinema__home">
       <div className="cinema__home__latest">
