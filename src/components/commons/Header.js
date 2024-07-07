@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
@@ -19,6 +19,7 @@ function Header() {
   const [token, setToken] = useState(sessionStorage.getItem('token'));
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -54,8 +55,10 @@ function Header() {
     }
   }, [dispatch, token]);
 
+  const headerClassName = location.pathname === '/contact' ? 'header__contact' : 'header';
+
   return (
-    <div className="header">
+    <div className={headerClassName}>
       <div className="container">
         <nav className="nav">
           <div className="nav__logo">

@@ -1,4 +1,4 @@
-import facebook from '../images/facebook.png';
+import facebook from '../images/contactIcons/facebook.png';
 import instagram from '../images/contactIcons/instagram.png';
 import twitter from '../images/contactIcons/twitter.png';
 import google from '../images/contactIcons/google.png';
