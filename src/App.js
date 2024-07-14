@@ -25,9 +25,9 @@ function App() {
         <Route path="/film/:movieId" element={<Film />} />
         <Route path="/ticket" element={<Ticket />} />
         <Route path="/buyticket1" element={<BuyTicket1 />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signIn" element={<SignIn />} />
         <Route path="/reset" element={<Reset />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signUp" element={<SignUp />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<Navigate to="/not_found" />} />
         <Route path="/not_found" element={<NotFound />} />

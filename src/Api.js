@@ -38,6 +38,14 @@ class Api {
   static categoryList() {
     return api.get('/category/list');
   }
+
+  static countryList() {
+    return api.get('/movie/countries');
+  }
+
+  static scheduleList() {
+    return api.get('/schedule/list');
+  }
 }
 
 export default Api;

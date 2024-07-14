@@ -26,9 +26,9 @@ function Footer() {
             <div className="footer__menu">
               <div className="footer__menu__link">
                 <h3>About</h3>
-                <NavLink to="#">Home</NavLink>
-                <NavLink to="#">Catalog</NavLink>
-                <NavLink to="#">Profile</NavLink>
+                <NavLink to="/home">Home</NavLink>
+                <NavLink to="/catalog">Catalog</NavLink>
+                <NavLink to="/settings">Profile</NavLink>
               </div>
               <div className="footer__menu__link">
                 <h3>Menu</h3>
@@ -44,7 +44,13 @@ function Footer() {
                 <h3>Contact Us</h3>
                 <div className="footer__contact__link__content">
                   <CiLocationOn />
-                  <NavLink to="#">Armenia Gyumri Gayi1 Street</NavLink>
+                  <NavLink
+                    to="https://www.google.com/maps/search/?api=1&query=Techno-Educational Academy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Techno-Educational Academy
+                  </NavLink>
                 </div>
                 <div className="footer__contact__link__content">
                   <LiaPhoneVolumeSolid />
@@ -53,7 +59,7 @@ function Footer() {
                 </div>
                 <div className="footer__contact__link__content">
                   <TfiEmail />
-                  <NavLink to="#">Fmovie.cineam@gmail.com</NavLink>
+                  <NavLink to="mailto:Fmovie.cineam@gmail.com">Fmovie.cineam@gmail.com</NavLink>
                 </div>
               </div>
             </div>

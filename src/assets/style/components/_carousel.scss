@@ -80,16 +80,22 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        width: 100%;
+        width: 61%;
         margin-bottom: 80px;
+        position: relative;
+
+        &__block {
+          position: absolute;
+          margin: 0;
+          right: 0;
+        }
 
         & img {
           border-radius: 50%;
           width: 63px;
           height: 63px;
           object-fit: cover;
-          margin-right: 4px;
-          border: 1px solid #fff;
+          margin: 0 4px 10px 0;
         }
 
         & p {
@@ -170,4 +176,83 @@
     border-radius: 20px;
     color: rgba(232, 146, 11, 0.8);
   }
+}
+
+.film.carousel__button.left {
+  left: 0;
+  background: none;
+  border-radius: 1px;
+  width: 36px;
+  height: 163px;
+}
+
+.film.carousel__button.right {
+  left: 0;
+  background: none;
+  border-radius: 1px;
+  width: 36px;
+  height: 163px;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.MuiAccordion-gutters.accordion.css-1086bdv-MuiPaper-root-MuiAccordion-root {
+  background-color: #fff0;
+  box-shadow: none;
+}
+
+.film__box__users {
+  .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.MuiAccordion-gutters.accordion.css-1086bdv-MuiPaper-root-MuiAccordion-root {
+    background-color: #fff0;
+    box-shadow: none;
+    width: 100%;
+  }
+}
+
+.MuiButtonBase-root.MuiAccordionSummary-root.Mui-expanded.MuiAccordionSummary-gutters.accordion__block.css-1f773le-MuiButtonBase-root-MuiAccordionSummary-root {
+  margin: 0;
+}
+
+.MuiAccordionSummary-content.Mui-expanded.MuiAccordionSummary-contentGutters.css-eqpfi5-MuiAccordionSummary-content {
+  margin: 0;
+}
+
+.MuiAccordionSummary-expandIconWrapper.css-yw020d-MuiAccordionSummary-expandIconWrapper {
+  & svg {
+    display: none;
+  }
+}
+
+.MuiAccordionSummary-content.Mui-expanded.MuiAccordionSummary-contentGutters.css-eqpfi5-MuiAccordionSummary-content {
+  .accordion__block__length {
+    display: none;
+  }
+}
+
+.MuiAccordionSummary-expandIconWrapper.Mui-expanded.css-yw020d-MuiAccordionSummary-expandIconWrapper {
+  & svg {
+    display: inline-block;
+    fill: #fff;
+  }
+}
+
+.MuiAccordionDetails-root.css-15v22id-MuiAccordionDetails-root {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.MuiAccordionSummary-content.MuiAccordionSummary-contentGutters.css-eqpfi5-MuiAccordionSummary-content {
+  align-items: center;
+}
+
+.accordion__block__length {
+  position: absolute;
+  right: 0;
+}
+
+.MuiAccordionSummary-expandIconWrapper.Mui-expanded.css-yw020d-MuiAccordionSummary-expandIconWrapper {
+  position: absolute;
+  right: 0;
+}
+
+.MuiAccordionDetails-root.css-15v22id-MuiAccordionDetails-root {
+  padding: 0 16px 16px;
 }

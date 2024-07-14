@@ -7,20 +7,22 @@ import Cart from '../components/HomeComponent/Cart';
 import Wrapper from '../components/commons/Wrapper';
 import { movieList } from '../store/actions/movieList';
 import { categoryList } from '../store/actions/categoryList';
+import { countryList } from '../store/actions/countryList';
 
 const customStyles = {
   control: (provided) => ({
     ...provided,
     background: 'rgba(255, 255, 255, 0.7)',
     borderRadius: '20px',
-    border: '2px solid rgb(19, 95, 85)',
+    border: '2px solid #135f55',
     padding: '5px 19px',
     color: '#135f55',
     fontSize: '16px',
-    width: '182px',
-    height: '50px',
+    width: '100%',
     fontWeight: '600',
     lineHeight: '21.09px',
+    outline: 'none',
+    boxShadow: 'none',
     '&:focus': {
       ...provided[':focus'],
       color: '#fff',
@@ -141,20 +143,45 @@ const customStyles = {
     ...provided,
     color: '#062822 !important',
   }),
+  multiValue: (provided) => ({
+    ...provided,
+    background: '#135f55 !important',
+    borderRadius: '15px',
+    color: '#fff',
+  }),
+  multiValueLabel: (provided) => ({
+    ...provided,
+    color: '#fff !important',
+  }),
+  multiValueRemove: (provided) => ({
+    ...provided,
+    color: '#fff !important',
+    transition: 'all 0.3s',
+    borderTopRightRadius: '15px',
+    borderBottomRightRadius: '15px',
+    cursor: 'pointer',
+    '&:hover': {
+      ...provided[':hover'],
+      outline: 'none',
+      boxShadow: 'none',
+      backgroundColor: '#1c796d !important',
+    },
+  }),
 };
 
 function Catalog() {
   const dispatch = useDispatch();
   const list = useSelector((state) => state.movieList.list);
+  const countries = useSelector((state) => state.countryList.list);
   const category = useSelector((state) => state.categoryList.list);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedCountries, setSelectedCountries] = useState([]);
+  const [selectedYears, setSelectedYears] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     dispatch(movieList({ page: 1, limit: 6 }));
-  }, [dispatch]);
-
-  useEffect(() => {
+    dispatch(countryList());
     dispatch(categoryList());
   }, [dispatch]);
 
@@ -162,20 +189,58 @@ function Catalog() {
     setSelectedCategories(selectedOptions || []);
   };
 
-  const categoryOptions = category.map((cat) => ({
+  const handleCountryChange = (selectedOptions) => {
+    setSelectedCountries(selectedOptions || []);
+  };
+
+  const handleYearChange = (selectedOptions) => {
+    setSelectedYears(selectedOptions || []);
+  };
+
+  const categoryOptions = category?.map((cat) => ({
     label: cat.name,
     value: cat.name,
   }));
 
-  const filteredListByCategory = selectedCategories.reduce((acc, cat) => acc.filter(
-    (movie) => movie.categories.some((movieCategory) => movieCategory.name === cat.value),
-  ), list);
+  const countryOptions = countries?.map((count) => ({
+    label: count,
+    value: count,
+  }));
 
-  const filteredListByTitle = filteredListByCategory.filter(
+  const yearOptions = Array.from(new Set(
+    list?.map((movie) => new Date(movie.releaseDate).getFullYear()),
+  ))
+    .sort()
+    .map((year) => ({
+      label: year.toString(),
+      value: year.toString(),
+    }));
+
+  const filteredListByCategory = selectedCategories.length
+    ? list?.filter(
+      (movie) => selectedCategories.some(
+        (cat) => movie.categories.some((movieCategory) => movieCategory.name === cat.value),
+      ),
+    )
+    : list;
+
+  const filteredListByCountry = selectedCountries.length
+    ? filteredListByCategory?.filter(
+      (movie) => selectedCountries.some((country) => movie.details.includes(country.value)),
+    )
+    : filteredListByCategory;
+
+  const filteredListByYear = selectedYears.length
+    ? filteredListByCountry?.filter(
+      (movie) => selectedYears.some(
+        (year) => new Date(movie.releaseDate).getFullYear().toString() === year.value,
+      ),
+    )
+    : filteredListByCountry;
+
+  const filteredListByTitle = filteredListByYear?.filter(
     (movie) => movie.title.toLowerCase().includes(inputValue.toLowerCase()),
   );
-
-  console.log(filteredListByTitle);
 
   return (
     <Wrapper className="cinema__home">
@@ -187,27 +252,31 @@ function Catalog() {
                 options={categoryOptions}
                 isMulti
                 styles={customStyles}
-                name="colors"
+                name="categories"
                 className="basic-multi-select"
                 classNamePrefix="select"
                 placeholder="Category"
                 onChange={handleCategoryChange}
               />
               <Select
+                options={countryOptions}
                 isMulti
                 styles={customStyles}
-                name="colors"
+                name="countries"
                 className="basic-multi-select"
                 classNamePrefix="select"
                 placeholder="Country"
+                onChange={handleCountryChange}
               />
               <Select
+                options={yearOptions}
                 isMulti
                 styles={customStyles}
-                name="colors"
+                name="years"
                 className="basic-multi-select"
                 classNamePrefix="select"
                 placeholder="Year"
+                onChange={handleYearChange}
               />
             </div>
             <div className="filtration__block__search">
@@ -226,7 +295,7 @@ function Catalog() {
       <div className="cinema__home__latest">
         <div className="container">
           <div className="cinema__home__latest__row">
-            {filteredListByTitle?.map((movie) => (
+            {filteredListByTitle ? filteredListByTitle.map((movie) => (
               <Cart
                 key={movie.id}
                 moviePhoto={movie.photos[0].moviePhoto}
@@ -235,7 +304,7 @@ function Catalog() {
                 voters={movie.voters}
                 movieId={movie.id}
               />
-            ))}
+            )) : null}
           </div>
         </div>
       </div>

@@ -22,17 +22,21 @@ function ContactInfo() {
             <CiLocationOn />
           </figure>
           <h2 className="contact__info__item__title">Address</h2>
-          <p className="contact__info__item__infos">
-            Armenia Gyumri
-            Gayi1 Street
-          </p>
+          <NavLink
+            to="https://www.google.com/maps/search/?api=1&query=Techno-Educational Academy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact__info__item__infos"
+          >
+            Techno-Educational Academy
+          </NavLink>
         </div>
         <div className="contact__info__item">
           <figure>
             <TfiEmail />
           </figure>
           <h2 className="contact__info__item__title">Email</h2>
-          <h2 className="contact__info__item__infos">Fmovie.cineam@gmail.com</h2>
+          <NavLink to="mailto:Fmovie.cineam@gmail.com">Fmovie.cineam@gmail.com</NavLink>
         </div>
       </div>
     </div>

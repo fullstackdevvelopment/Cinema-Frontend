@@ -55,7 +55,7 @@ function Header() {
     }
   }, [dispatch, token]);
 
-  const headerClassName = location.pathname === '/contact' ? 'header__contact' : 'header';
+  const headerClassName = (location.pathname === '/contact' || location.pathname === '/signIn' || location.pathname === '/signUp') ? 'header__contact' : 'header';
 
   return (
     <div className={headerClassName}>
@@ -70,7 +70,7 @@ function Header() {
             <NavLink to="/home">Home</NavLink>
             <NavLink to="/catalog">Catalog</NavLink>
             <NavLink to="/contact">Contact Us</NavLink>
-            <NavLink to="/buyTicket1">
+            <NavLink to="/ticket">
               <button type="submit" className="green__btn">Ticket</button>
             </NavLink>
           </div>
@@ -97,8 +97,8 @@ function Header() {
               </div>
             ) : (
               <>
-                <NavLink to="/signin">Sign In</NavLink>
-                <NavLink className="orange__btn" to="/signup">Sign Up</NavLink>
+                <NavLink to="/signIn">Sign In</NavLink>
+                <NavLink className="orange__btn" to="/signUp">Sign Up</NavLink>
               </>
             )}
             <Menu

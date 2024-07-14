@@ -4,6 +4,11 @@ import NukaCarousel from 'nuka-carousel';
 import ReactStars from 'react-rating-stars-component';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { movieList } from '../../store/actions/movieList';
 
 function Carousel() {
@@ -69,15 +74,36 @@ function Carousel() {
                   />
                   <p className="carousel__block__slide__content__voters">{`${movie?.voters} Voters`}</p>
                   <div className="carousel__block__slide__content__photo">
-                    {movie?.actors?.slice(0, 5)
-                      .map((actor) => (
-                        <img
-                          key={actor.id}
-                          src={`http://localhost:4000/${actor.photo}`}
-                          alt={`actor${actor.id}`}
-                        />
-                      ))}
-                    <p>{`+${movie.actors.length - 5}`}</p>
+                    <Accordion className="accordion">
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1-content"
+                        id="panel1-header"
+                        className="accordion__block"
+                      >
+                        {movie?.actors?.slice(0, 5)
+                          .map((actor) => (
+                            <img
+                              key={actor.id}
+                              src={`http://localhost:4000/${actor.photo}`}
+                              alt={`actor${actor.id}`}
+                            />
+                          ))}
+                        <div className="accordion__block__length">
+                          <p>{`+${movie.actors.length - 5}`}</p>
+                        </div>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        {movie?.actors?.slice(5)
+                          .map((actor) => (
+                            <img
+                              key={actor.id}
+                              src={`http://localhost:4000/${actor.photo}`}
+                              alt={`actor${actor.id}`}
+                            />
+                          ))}
+                      </AccordionDetails>
+                    </Accordion>
                   </div>
                   <div className="carousel__block__slide__content__button">
                     <NavLink className="green__btn" to={`/film/${movie.id}`}>Watch Trailer</NavLink>

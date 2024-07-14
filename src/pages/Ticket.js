@@ -1,15 +1,14 @@
 import React from 'react';
-import MovieTicket from '../components/TicketComponents/MovieTicket';
 import Wrapper from '../components/commons/Wrapper';
+import ScheduleList from '../components/TicketComponents/ScheduleList';
 
 function Ticket() {
   return (
     <Wrapper>
-      <div className="ticket">
-        <MovieTicket />
-        <MovieTicket />
-        <MovieTicket />
-        <MovieTicket />
+      <div className="schedule">
+        <div className="container">
+          <ScheduleList />
+        </div>
       </div>
     </Wrapper>
   );
