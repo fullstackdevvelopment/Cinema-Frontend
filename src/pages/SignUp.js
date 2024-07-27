@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import FileInput from '../components/SignUpComponents/FileInput';
 import DataInput from '../components/SignUpComponents/DataInput';
-import CardInput from '../components/SignUpComponents/CardInput';
 import Wrapper from '../components/commons/Wrapper';
 import { register } from '../store/actions/register';
+import CardInput from '../components/SignUpComponents/CardInput';
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -16,17 +16,19 @@ function SignUp() {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [address, setAddress] = useState('');
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState('+374');
   const [cardNumber, setCardNumber] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('');
   const [selectedYear, setSelectedYear] = useState('');
-  const [cvv, setCvv] = useState('');
   const [cardHolderName, setCardHolderName] = useState('');
+  const [cvv, setCvv] = useState('');
+  const [errors, setErrors] = useState(null);
 
-  const handleSubmit = useCallback((e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('photo', photo);
@@ -44,11 +46,38 @@ function SignUp() {
     formData.append('selectedYear', selectedYear);
     formData.append('cvv', cvv);
     formData.append('cardHolderName', cardHolderName);
-    dispatch(register(formData));
-    navigate('/home');
+    try {
+      const newErrors = {};
+
+      if (repeatPassword !== password) {
+        newErrors.repeatPassword = 'Password mismatch';
+      }
+      if (photo === null) {
+        newErrors.photo = 'Add Photo';
+      }
+      const signUpResult = await dispatch(register(formData));
+      console.log(signUpResult);
+
+      if (register.fulfilled.match(signUpResult)) {
+        navigate('/home');
+      } else if (signUpResult.error.message === 'Rejected') {
+        const apiErrors = signUpResult.payload.errors;
+        setErrors({
+          ...apiErrors,
+          ...newErrors,
+        });
+      } else {
+        setErrors(newErrors);
+      }
+      // eslint-disable-next-line no-shadow
+    } catch (e) {
+      console.log(e);
+    }
   }, [dispatch, photo, firstName, lastName, userName, email,
-    password, city, country, address, phone,
-    cardNumber, selectedMonth, selectedYear, cvv,
+    password, city, country, address, phone, cardNumber,
+    selectedMonth,
+    selectedYear,
+    cvv,
     cardHolderName]);
   return (
     <Wrapper>
@@ -63,7 +92,7 @@ function SignUp() {
             </div>
             <div className="sign__up__form">
               <form id="signUp" onSubmit={handleSubmit}>
-                <FileInput setPhoto={setPhoto} />
+                <FileInput setPhoto={setPhoto} errors={errors} />
                 <DataInput
                   setFirstName={setFirstName}
                   setLastName={setLastName}
@@ -79,10 +108,12 @@ function SignUp() {
                   userName={userName}
                   email={email}
                   password={password}
+                  setRepeatPassword={setRepeatPassword}
                   city={city}
                   country={country}
                   address={address}
                   phone={phone}
+                  errors={errors}
                 />
                 <CardInput
                   cardNumber={cardNumber}
@@ -93,7 +124,9 @@ function SignUp() {
                   selectedYear={selectedYear}
                   setSelectedMonth={setSelectedMonth}
                   setSelectedYear={setSelectedYear}
+                  cvv={cvv}
                   setCvv={setCvv}
+                  errors={errors}
                 />
                 <div className="sign__up__btn">
                   <button className="orange__btn" type="submit" form="signUp">Done</button>

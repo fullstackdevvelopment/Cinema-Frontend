@@ -4,12 +4,12 @@ import { LiaPhoneVolumeSolid } from 'react-icons/lia';
 import { CiLocationOn } from 'react-icons/ci';
 import { TfiEmail } from 'react-icons/tfi';
 import { NavLink } from 'react-router-dom';
-import googlePlay from '../../assets/images/icons/google-play.png';
-import appStore from '../../assets/images/icons/app-store.svg';
-import instagram from '../../assets/images/icons/instagram.png';
-import facebook from '../../assets/images/icons/facebook.png';
-import chrome from '../../assets/images/icons/chrome.png';
-import twitter from '../../assets/images/icons/twitter.png';
+import googlePlay from '../../assets/images/icons/google-play.webp';
+import appStore from '../../assets/images/icons/app-store.webp';
+import instagram from '../../assets/images/icons/instagram.webp';
+import facebook from '../../assets/images/icons/facebook.webp';
+import chrome from '../../assets/images/icons/chrome.webp';
+import twitter from '../../assets/images/icons/twitter.webp';
 
 function Footer() {
   return (

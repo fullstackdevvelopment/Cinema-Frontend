@@ -12,15 +12,39 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 82px;
+    height: 82px;
+    position: relative;
 
     & a {
       width: 100%;
       height: 100%;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+    }
 
-      & img {
-        width: 100%;
-        height: 100%;
-      }
+    & p:first-child {
+      font-weight: 600;
+      text-align: left;
+      color: #135F55;
+      position: relative;
+      font-size: 70.29px;
+      line-height: 82.37px;
+    }
+
+    & p:last-child {
+      font-style: italic;
+      font-weight: 700;
+      text-align: left;
+      color: rgba(232, 146, 11, 0.5019607843);
+      position: relative;
+      left: -30px;
+      top: 15px;
+      font-size: 27.33px;
+      line-height: 32.03px;
     }
   }
 
@@ -114,9 +138,26 @@
   width: 100%;
   height: 100%;
 
-  & img:first-child {
-    height: 100%;
-    border-radius: 50%;
+  & div:nth-child(1) {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & img:first-child {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+  .vector {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .vector.rotate {
+    transform: rotate(180deg);
+    transition: all 0.2s ease-in-out;
   }
 }
 
@@ -125,6 +166,7 @@
   border-radius: 15px;
   padding: 0;
   background: rgba(0, 0, 0, 1);
+  margin-top: 55px;
 
   & ul img {
     width: 50px;
@@ -149,7 +191,7 @@
   & ul li:nth-child(1) {
     display: flex;
     background: rgba(20, 20, 20, 0.8);
-    padding: 10px;
+    padding: 9px;
     border-radius: 15px;
     margin-bottom: 20px;
 

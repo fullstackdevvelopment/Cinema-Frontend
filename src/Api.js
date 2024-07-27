@@ -46,6 +46,34 @@ class Api {
   static scheduleList() {
     return api.get('/schedule/list');
   }
+
+  static reviewList(movieId) {
+    return api.get(`/review/list/${movieId}`);
+  }
+
+  static createReview({ userId, movieId, comment }) {
+    return api.post(`/review/create/${userId}/${movieId}`, comment);
+  }
+
+  static createPaymentIntent(amount, currency = 'usd') {
+    return api.post('/payment/create-payment-intent', { amount, currency });
+  }
+
+  static updatePaymentStatus(paymentIntentId, status) {
+    return api.post('/payment/update-payment-status', { paymentIntentId, status });
+  }
+
+  static handleWebhook(body) {
+    return api.post('/payment/webhook', body, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  static createBooking(data) {
+    return api.post('/booking/create', data);
+  }
 }
 
 export default Api;

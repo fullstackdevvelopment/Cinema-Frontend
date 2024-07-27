@@ -1,6 +1,20 @@
 .film {
   background: #1e1e1e;
 
+  &__btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+
+    & button {
+      font-size: 25px;
+      line-height: 29.3px;
+      padding: 14px 44px;
+    }
+  }
+
   &__stars {
     display: flex;
     justify-content: space-between;
@@ -34,6 +48,7 @@
     align-items: flex-start;
     justify-content: center;
     width: 100%;
+    margin-bottom: 50px;
 
     &__image {
       width: 35%;
@@ -79,7 +94,6 @@
         &__item {
           display: flex;
           width: 100%;
-          margin: 0 10px auto;
           height: 100%;
 
           & img {
@@ -115,8 +129,8 @@
 
     &__item {
       border-radius: 50%;
-      width: calc(20% - 12px);
-      height: 55.6px;
+      width: 60px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -132,12 +146,37 @@
   }
 }
 
-.details-card {
+.details__card {
   display: flex;
   color: #f2f2f2;
-  padding: 20px;
-  border-radius: 8px;
   font-family: Arial, sans-serif;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #e69500;
+  padding: 20px 0 50px 0;
+}
+
+.details__title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #e69500;
+  margin-bottom: 40px;
+
+  &__text {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+
+    & h2 {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 35.16px;
+    }
+  }
 }
 
 .details, .storyline {
@@ -150,28 +189,47 @@
   }
 }
 
+.storyline {
+  & p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 27.75px;
+  }
+}
+
 .details:last-child {
   margin-right: 0;
 }
 
-.details__card__line {
-  border-bottom: 1px solid #e69500;
-}
-
-.details-content div {
-  margin-bottom: 10px;
-}
-
-strong {
-  color: #e69500;
-}
-
-p {
-  line-height: 1.6;
+.details__content p {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28.13px;
 }
 
 .details-content div {
   display: flex;
   align-content: center;
   justify-content: space-between;
+}
+
+.details {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px;
+
+    &__text {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #e69500;
+      padding-bottom: 10px;
+    }
+  }
 }

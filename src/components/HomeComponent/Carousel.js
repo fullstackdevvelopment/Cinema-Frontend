@@ -26,7 +26,7 @@ function Carousel() {
       document.querySelector('.carousel__button.right').click();
     }
   }, []);
-
+  console.log(list);
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
@@ -37,6 +37,9 @@ function Carousel() {
     <div className="home__carousel">
       <NukaCarousel
         wrapAround
+        slidesToShow={1}
+        speed={400}
+        slidesToScroll={1}
         renderCenterLeftControls={({ previousSlide }) => (
           <span className="carousel__button left" onClick={previousSlide}>
             ‹

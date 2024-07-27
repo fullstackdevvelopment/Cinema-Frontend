@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,7 +6,6 @@ import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear } from '@fortawesome/free-solid-svg-icons';
-import logo from '../../assets/images/logo.png';
 import vector from '../../assets/images/icons/vector.svg';
 import userError from '../../assets/images/icons/userError.webp';
 import logOut from '../../assets/images/icons/logout.png';
@@ -17,6 +16,7 @@ function Header() {
   const user = useSelector((state) => state.userData.data.user);
   const [anchorEl, setAnchorEl] = useState(null);
   const [token, setToken] = useState(sessionStorage.getItem('token'));
+  const [vectorClass, setVectorClass] = useState('vector');
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
   const location = useLocation();
@@ -35,10 +35,14 @@ function Header() {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    setVectorClass('');
+    setVectorClass('vector rotate');
   };
 
   const handleClose = () => {
     setAnchorEl(null);
+    setVectorClass('');
+    setVectorClass('vector');
   };
 
   const handleLogout = () => {
@@ -55,7 +59,11 @@ function Header() {
     }
   }, [dispatch, token]);
 
-  const headerClassName = (location.pathname === '/contact' || location.pathname === '/signIn' || location.pathname === '/signUp') ? 'header__contact' : 'header';
+  const handleSettings = useCallback(() => {
+    navigate('/settings');
+  }, [navigate]);
+
+  const headerClassName = (location.pathname === '/settings' || location.pathname === '/contact' || location.pathname === '/signIn' || location.pathname === '/signUp') ? 'header__contact' : 'header';
 
   return (
     <div className={headerClassName}>
@@ -63,7 +71,8 @@ function Header() {
         <nav className="nav">
           <div className="nav__logo">
             <NavLink to="/home">
-              <img src={logo} alt="logo" />
+              <p>F</p>
+              <p>movie</p>
             </NavLink>
           </div>
           <div className="nav__link">
@@ -84,15 +93,19 @@ function Header() {
                   aria-expanded={open ? 'true' : undefined}
                   onClick={handleClick}
                 >
-                  <img
-                    src={`http://localhost:4000/${user?.photo}`}
-                    alt="user"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = userError;
-                    }}
-                  />
-                  <img src={vector} alt="vector" />
+                  <div>
+                    <img
+                      src={`http://localhost:4000/${user?.photo}`}
+                      alt="user"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = userError;
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <img className={vectorClass} src={vector} alt="vector" />
+                  </div>
                 </Button>
               </div>
             ) : (
@@ -117,7 +130,7 @@ function Header() {
               }}
             >
               {token ? [
-                <MenuItem>
+                <MenuItem key="user-info">
                   <img
                     src={`http://localhost:4000/${user?.photo}`}
                     alt="user"
@@ -135,7 +148,7 @@ function Header() {
                   <img src={logOut} alt="logout" />
                   <p>Sign Out</p>
                 </MenuItem>,
-                <MenuItem key="settings" onClick={() => navigate('/settings')}>
+                <MenuItem key="settings" onClick={handleSettings}>
                   <FontAwesomeIcon icon={faGear} />
                   <p>Settings</p>
                 </MenuItem>,

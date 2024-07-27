@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { RingLoader } from 'react-spinners';
+import { PulseLoader, RingLoader } from 'react-spinners';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -18,6 +18,7 @@ import { singleMovie } from '../store/actions/singleMovie';
 
 function Film() {
   const { movieId } = useParams();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const singleData = useSelector((state) => state.singleMovie.list);
@@ -32,26 +33,19 @@ function Film() {
     }
   }, [movieId, dispatch]);
 
-  const handleKeyDown = useCallback((e) => {
-    if (e.key === 'ArrowLeft') {
-      document.querySelector('.carousel__button.left').click();
-    } else if (e.key === 'ArrowRight') {
-      document.querySelector('.carousel__button.right').click();
-    }
+  const handleClick = useCallback(() => {
+    navigate(`/ticket/buy/${movieId}`);
   }, []);
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleKeyDown]);
 
   return (
     <Wrapper>
       <div className="film">
         {loading ? (
-          <div className="admin__dashboard__loader">
+          <div className="buyTicket__loader">
+            <h1>
+              Loading
+              <PulseLoader color="#E8920B" />
+            </h1>
             <RingLoader color="#E8920B" />
           </div>
         ) : (
@@ -114,6 +108,7 @@ function Film() {
                     speed={400}
                     slidesToScroll={1}
                     cellSpacing={10}
+                    renderBottomCenterControls={null}
                     renderCenterLeftControls={({ previousSlide }) => (
                       <span className="film carousel__button left" onClick={previousSlide}>
                         ‹
@@ -124,7 +119,6 @@ function Film() {
                         ›
                       </span>
                     )}
-                    renderBottomCenterControls={null}
                   >
                     {singleData?.stills?.map((s) => (
                       <div key={s.id} className="film__box__movie__shots__block">
@@ -137,36 +131,36 @@ function Film() {
                 </div>
               </div>
             </div>
-            <div className="details-card">
+            <div className="details__card">
+              <div className="details__title">
+                <div className="details__title__text">
+                  <h2>Details</h2>
+                </div>
+                <div className="details__title__text">
+                  <h2>Storyline</h2>
+                </div>
+              </div>
               <div className="details">
-                <h2>Details</h2>
-                <div className="details__card__line" />
-                <div className="details-content">
-                  <div>
-                    <strong>Details:</strong>
+                <div className="details__content">
+                  <div className="details__content__text">
+                    <p>Details:</p>
                     {singleData?.details}
                   </div>
-                  <div className="details__card__line" />
-                  <div>
-                    <strong>Language:</strong>
+                  <div className="details__content__text">
+                    <p>Language:</p>
                     {singleData?.language}
                   </div>
-                  <div className="details__card__line" />
-                  <div>
-                    <strong>Release Date:</strong>
+                  <div className="details__content__text">
+                    <p>Release Date:</p>
                     {singleData?.releaseDate}
                   </div>
-                  <div className="details__card__line" />
-                  <div>
-                    <strong>Director:</strong>
+                  <div className="details__content__text">
+                    <p>Director:</p>
                     {singleData?.director}
                   </div>
-                  <div className="details__card__line" />
                 </div>
               </div>
               <div className="storyline">
-                <h2>Storyline</h2>
-                <div className="details__card__line" />
                 <p>
                   {singleData?.storyLine}
                 </p>
@@ -174,7 +168,10 @@ function Film() {
             </div>
           </div>
         )}
-        <Comments />
+        <div className="film__btn" onClick={handleClick}>
+          <button type="submit" className="orange__btn">Get Tickets</button>
+        </div>
+        <Comments movieId={movieId} />
       </div>
     </Wrapper>
   );

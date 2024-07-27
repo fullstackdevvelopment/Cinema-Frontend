@@ -6,6 +6,70 @@
   align-items: center;
   justify-content: center;
   padding: 50px 0;
+  position: relative;
+
+  &__filtracion {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 40px 0;
+    border-top: 2px solid #E8920B;
+    border-bottom: 2px solid #E8920B;
+    margin-bottom: 50px;
+    border-radius: 20px;
+
+    &__block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 45%;
+      position: relative;
+
+      & .basic-multi-select.css-b62m3t-container {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+
+    &__search {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 45%;
+      position: relative;
+
+      & input {
+        width: 100%;
+        border-radius: 20px;
+        height: 100%;
+        background: #1e1e1e;
+        border: 1px solid #fff;
+        color: #fff;
+        padding: 20px 0 20px 40px;
+
+        &::placeholder {
+          color: #fff;
+          letter-spacing: 0;
+          font-weight: 400;
+        }
+
+        &:focus-visible {
+          background: #00000063;
+        }
+      }
+
+      & svg {
+        color: #fff;
+        position: absolute;
+        left: 10px;
+        top: 20px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+    }
+  }
 
   &__dashboard {
     width: 100%;
@@ -104,12 +168,35 @@
           width: 100%;
           justify-content: center;
           height: 100%;
+          margin-bottom: 50px;
+          flex-direction: column;
+
+          &__btn {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            align-items: center;
+
+            & .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+              display: flex;
+              width: 15%;
+              justify-content: center;
+              align-items: center;
+              color: #000;
+              background: #E8920B;
+              font-weight: 600;
+              border-radius: 17px;
+
+              & svg {
+                margin-left: 5px;
+              }
+            }
+          }
         }
 
         &__list {
           width: 100%;
           display: flex;
-          margin-bottom: 50px;
           align-items: flex-start;
           justify-content: center;
 

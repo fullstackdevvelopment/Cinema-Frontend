@@ -1,5 +1,5 @@
 .sign__in__input {
-  background: rgba(255, 255, 255, 0.6980392157);
+  background: #fff;
   border-radius: 10px;
   font-weight: 600;
   text-align: left;
@@ -20,7 +20,7 @@
   }
 
   &:focus-visible {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.6980392157);
   }
 }
 
@@ -37,7 +37,7 @@
   outline: none;
   padding: 20px;
   width: 42%;
-  margin: 10px 30px;
+  margin-bottom: 5px;
 
   &::placeholder {
     color: #135F55;
@@ -65,22 +65,26 @@
       font-size: 18px;
       font-weight: 600;
       line-height: 21.09px;
-      padding: 77px 131px;
+      padding: 20px;
       color: #135F55;
       cursor: pointer;
       position: relative;
+      margin-bottom: 5px;
+    }
+
+    &__label.img {
+      border-radius: 10px;
+      padding: 80px;
+      color: #135F55;
+      cursor: pointer;
+      position: relative;
+      background: none;
+      border: none;
     }
 
     &__img {
       object-fit: cover;
-      position: absolute;
-      border-radius: 10px;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
+      border-radius: 50%;
     }
   }
 
@@ -95,8 +99,8 @@
     color: #135F55;
     outline: none;
     padding: 20px;
-    margin-bottom: 80px;
     width: 100%;
+    margin-bottom: 5px;
 
     &::placeholder {
       color: #135F55;
@@ -114,10 +118,12 @@
       font-weight: 400;
       line-height: 21.09px;
       text-align: center;
-      padding: 27px;
-      width: 108px;
+      padding: 27px 0;
       color: #135F55;
       outline: none;
+      width: 108px;
+      height: 78px;
+      margin-bottom: 5px;
 
       &::placeholder {
         color: #135F55;

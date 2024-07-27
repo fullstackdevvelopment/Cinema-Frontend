@@ -74,6 +74,57 @@
       justify-content: center;
       margin-bottom: 60px;
       position: relative;
+
+      &__block {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 60px;
+        flex-direction: column;
+
+        &__img {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 20px;
+
+          & img {
+            width: 15%;
+            height: 100%;
+          }
+        }
+
+        &__first {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+
+          & .register__error {
+            color: #cd3d64;
+            font-weight: bold;
+            background: #fff;
+            border: 2px solid #cd3d64;
+            border-radius: 7px;
+            padding: 6px 18px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 11px;
+
+            & svg {
+              margin-right: 5px;
+            }
+          }
+
+          & p {
+            color: #fff;
+          }
+        }
+      }
     }
 
     &__data {
@@ -83,6 +134,56 @@
       justify-content: center;
       margin-bottom: 60px;
       flex-wrap: wrap;
+
+      & label {
+        width: 42%;
+        margin: 0 30px 10px 30px;
+        height: 110px;
+
+        & input {
+          width: 100%;
+        }
+
+        & .error__input {
+          border: 2px solid red;
+        }
+
+        & .register__error {
+          color: #cd3d64;
+          font-weight: bold;
+          background: #fff;
+          border: 2px solid #cd3d64;
+          border-radius: 7px;
+          padding: 6px 18px;
+          width: 100%;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          font-size: 11px;
+
+          & svg {
+            margin-right: 5px;
+          }
+        }
+
+        & .register__ok {
+          color: #008B62;
+          font-weight: bold;
+          background: #fff;
+          border: 2px solid #008B62;
+          border-radius: 7px;
+          padding: 6px 18px;
+          width: 100%;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          font-size: 11px;
+
+          & svg {
+            margin-right: 5px;
+          }
+        }
+      }
     }
 
     &__card {
@@ -118,7 +219,49 @@
           align-items: center;
           justify-content: center;
           flex-direction: column;
-          margin-bottom: 5px;
+          margin-bottom: 50px;
+
+          & label {
+            width: 100%;
+            height: 100px;
+            //margin-bottom: 80px;
+
+            & .card__error {
+              color: #cd3d64;
+              font-weight: bold;
+              background: #fff;
+              border: 2px solid #cd3d64;
+              border-radius: 7px;
+              padding: 6px 18px;
+              width: 100%;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              font-size: 11px;
+
+              & svg {
+                margin-right: 3px;
+              }
+            }
+
+            & .card__ok {
+              color: #008B62;
+              font-weight: bold;
+              background: #fff;
+              border: 2px solid #008B62;
+              border-radius: 7px;
+              padding: 6px 18px;
+              width: 100%;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              font-size: 11px;
+
+              & svg {
+                margin-right: 3px;
+              }
+            }
+          }
         }
 
         &__date {
@@ -127,11 +270,62 @@
           align-items: center;
           justify-content: space-between;
 
-          & span {
+          & label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: calc(100% / 3 - 44px);
+            height: 120px;
+            justify-content: flex-start;
+
+            & .card__error {
+              color: #cd3d64;
+              font-weight: bold;
+              background: #fff;
+              border: 2px solid #cd3d64;
+              border-radius: 7px;
+              width: 100%;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              font-size: 11px;
+              line-height: 3;
+              padding-left: 8px;
+              height: 30px;
+
+              & svg {
+                margin-right: 3px;
+              }
+            }
+
+            & .card__ok {
+              color: #008B62;
+              font-weight: bold;
+              background: #fff;
+              border: 2px solid #008B62;
+              border-radius: 7px;
+              width: 100%;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              font-size: 11px;
+              line-height: 3;
+              padding-left: 8px;
+              height: 30px;
+
+              & svg {
+                margin-right: 3px;
+              }
+            }
+          }
+
+          & .minus__span {
             color: #fff;
             font-size: 37px;
             font-weight: 400;
             line-height: 43.36px;
+            position: relative;
+            top: -15px;
           }
         }
       }
@@ -189,18 +383,18 @@
     margin-bottom: 60px;
     z-index: 1;
 
-      & span {
-        color: #fff;
-        margin: 0 3px;
-        font-size: 18px;
-        font-weight: 900;
-        line-height: 49.22px;
+    & span {
+      color: #fff;
+      margin: 0 3px;
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 49.22px;
 
-        & svg {
-          width: 12px;
-          height: 12px;
-        }
+      & svg {
+        width: 12px;
+        height: 12px;
       }
+    }
 
     & span:nth-child(4) {
       margin-right: 20px;
@@ -266,6 +460,20 @@
         font-weight: 600;
         line-height: 31.53px;
         color: #fff;
+      }
+    }
+
+    &__cvc {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & p {
+        font-weight: 600;
+        color: #fff;
+        margin-right: 4px;
+        font-size: 20px;
+        line-height: 23.44px;
       }
     }
   }

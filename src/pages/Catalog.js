@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { PulseLoader, RingLoader } from 'react-spinners';
 import Cart from '../components/HomeComponent/Cart';
 import Wrapper from '../components/commons/Wrapper';
 import { movieList } from '../store/actions/movieList';
 import { categoryList } from '../store/actions/categoryList';
 import { countryList } from '../store/actions/countryList';
+import Pagination from '../helpers/Pagination';
 
 const customStyles = {
   control: (provided) => ({
@@ -178,11 +180,17 @@ function Catalog() {
   const [selectedCountries, setSelectedCountries] = useState([]);
   const [selectedYears, setSelectedYears] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    dispatch(movieList({ page: 1, limit: 6 }));
-    dispatch(countryList());
-    dispatch(categoryList());
+    (async () => {
+      setLoading(true);
+      dispatch(movieList({ page: 1, limit: 6 }));
+      dispatch(countryList());
+      dispatch(categoryList());
+      setLoading(false);
+    })();
   }, [dispatch]);
 
   const handleCategoryChange = (selectedOptions) => {
@@ -206,6 +214,10 @@ function Catalog() {
     label: count,
     value: count,
   }));
+
+  const handlePageChange = useCallback((page) => {
+    setCurrentPage(page);
+  }, [setCurrentPage]);
 
   const yearOptions = Array.from(new Set(
     list?.map((movie) => new Date(movie.releaseDate).getFullYear()),
@@ -242,72 +254,96 @@ function Catalog() {
     (movie) => movie.title.toLowerCase().includes(inputValue.toLowerCase()),
   );
 
+  const count = filteredListByTitle?.length;
+  const totalPages = Math.ceil(count / 12);
+  const startIndex = (currentPage - 1) * 12;
+  const endIndex = startIndex + 12;
+
+  const paginatedList = filteredListByTitle?.slice(startIndex, endIndex);
+
   return (
     <Wrapper className="cinema__home">
-      <div className="filtration">
-        <div className="container">
-          <div className="filtration__block">
-            <div className="filtration__block__select">
-              <Select
-                options={categoryOptions}
-                isMulti
-                styles={customStyles}
-                name="categories"
-                className="basic-multi-select"
-                classNamePrefix="select"
-                placeholder="Category"
-                onChange={handleCategoryChange}
-              />
-              <Select
-                options={countryOptions}
-                isMulti
-                styles={customStyles}
-                name="countries"
-                className="basic-multi-select"
-                classNamePrefix="select"
-                placeholder="Country"
-                onChange={handleCountryChange}
-              />
-              <Select
-                options={yearOptions}
-                isMulti
-                styles={customStyles}
-                name="years"
-                className="basic-multi-select"
-                classNamePrefix="select"
-                placeholder="Year"
-                onChange={handleYearChange}
-              />
-            </div>
-            <div className="filtration__block__search">
-              <input
-                className="sign__in__input"
-                type="text"
-                placeholder="Search"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-              />
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
+      {loading ? (
+        <div className="buyTicket__loader">
+          <h1>
+            Loading
+            <PulseLoader color="#E8920B" />
+          </h1>
+          <RingLoader color="#E8920B" />
+        </div>
+      ) : (
+        <>
+          <div className="filtration">
+            <div className="container">
+              <div className="filtration__block">
+                <div className="filtration__block__select">
+                  <Select
+                    options={categoryOptions}
+                    isMulti
+                    styles={customStyles}
+                    name="categories"
+                    className="basic-multi-select"
+                    classNamePrefix="select"
+                    placeholder="Category"
+                    onChange={handleCategoryChange}
+                  />
+                  <Select
+                    options={countryOptions}
+                    isMulti
+                    styles={customStyles}
+                    name="countries"
+                    className="basic-multi-select"
+                    classNamePrefix="select"
+                    placeholder="Country"
+                    onChange={handleCountryChange}
+                  />
+                  <Select
+                    options={yearOptions}
+                    isMulti
+                    styles={customStyles}
+                    name="years"
+                    className="basic-multi-select"
+                    classNamePrefix="select"
+                    placeholder="Year"
+                    onChange={handleYearChange}
+                  />
+                </div>
+                <div className="filtration__block__search">
+                  <input
+                    className="sign__in__input"
+                    type="text"
+                    placeholder="Search"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                  />
+                  <FontAwesomeIcon icon={faMagnifyingGlass} />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="cinema__home__latest">
-        <div className="container">
-          <div className="cinema__home__latest__row">
-            {filteredListByTitle ? filteredListByTitle.map((movie) => (
-              <Cart
-                key={movie.id}
-                moviePhoto={movie.photos[0].moviePhoto}
-                title={movie.title}
-                rating={movie.rating}
-                voters={movie.voters}
-                movieId={movie.id}
+          <div className="cinema__home__latest">
+            <div className="container">
+              <div className="cinema__home__latest__row">
+                {paginatedList ? paginatedList.map((movie) => (
+                  <Cart
+                    key={movie.id}
+                    moviePhoto={movie.photos[0].moviePhoto}
+                    title={movie.title}
+                    rating={movie.rating}
+                    voters={movie.voters}
+                    movieId={movie.id}
+                  />
+                )) : null}
+              </div>
+              <Pagination
+                totalPages={totalPages}
+                currentPage={currentPage}
+                handlePageChange={handlePageChange}
               />
-            )) : null}
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      )}
     </Wrapper>
   );
 }

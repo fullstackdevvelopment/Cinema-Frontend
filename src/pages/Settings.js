@@ -1,9 +1,13 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Wrapper from '../components/commons/Wrapper';
 import FileInput from '../components/SignUpComponents/FileInput';
 import DataInput from '../components/SignUpComponents/DataInput';
+import { userData } from '../store/actions/userData';
 
 function Settings() {
+  const navigate = useNavigate();
   const [photo, setPhoto] = useState(null);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -14,6 +18,18 @@ function Settings() {
   const [country, setCountry] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
+  const userToken = sessionStorage.getItem('token');
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.userData.data.user);
+  useEffect(() => {
+    if (!userToken) {
+      navigate('/signIn');
+    }
+  }, [userToken, navigate]);
+
+  useEffect(() => {
+    dispatch(userData(userToken));
+  }, [userToken, dispatch]);
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
@@ -38,7 +54,7 @@ function Settings() {
           <div className="profile__page">
             <p>Profile</p>
             <form id="signUp" onSubmit={handleSubmit}>
-              <FileInput setPhoto={setPhoto} />
+              <FileInput userPhoto={data?.photo} setPhoto={setPhoto} />
               <DataInput
                 setFirstName={setFirstName}
                 setLastName={setLastName}

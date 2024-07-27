@@ -84,11 +84,12 @@
     &__icon {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      width: 25%;
 
       & img {
-        width: 116.47px;
-        height: 33.41px;
+        width: 39%;
+        height: 35px;
       }
     }
   }

@@ -1,8 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Wrapper from '../components/commons/Wrapper';
-import contactIcons from '../assets/data/contactIcons';
 import ContactInfo from '../components/ContactComponents/ContactInfo';
+import facebook from '../assets/images/contactIcons/facebook.png';
+import instagram from '../assets/images/contactIcons/instagram.png';
+import twitter from '../assets/images/contactIcons/twitter.png';
+import google from '../assets/images/contactIcons/google.png';
+
+const contactIcons = [
+  { id: 1, img: facebook, url: 'https://www.facebook.com/' },
+  { id: 2, img: instagram, url: 'https://www.instagram.com/' },
+  { id: 3, img: twitter, url: 'https://x.com/?mx=2' },
+  { id: 4, img: google, url: 'https://google.com' },
+];
 
 function Contact() {
   return (
@@ -11,7 +21,7 @@ function Contact() {
         <div className="container">
           <div className="contact__page">
             <ContactInfo />
-            <h2 className="contact__page__message__title">If You Got Any Questions Olease Do Not Hesitate To Send Us a Meesage</h2>
+            <h2 className="contact__page__message__title">If You Got Any Questions Please Do Not Hesitate To Send Us a Message</h2>
             <div className="contact__inputs">
               <textarea placeholder="Message" className="contact__inputs__message" />
             </div>
