@@ -56,10 +56,9 @@ function SignUp() {
         newErrors.photo = 'Add Photo';
       }
       const signUpResult = await dispatch(register(formData));
-      console.log(signUpResult);
 
       if (register.fulfilled.match(signUpResult)) {
-        navigate('/home');
+        navigate('/email/verification');
       } else if (signUpResult.error.message === 'Rejected') {
         const apiErrors = signUpResult.payload.errors;
         setErrors({

@@ -1,20 +1,77 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { ToastContainer, toast } from 'react-toastify';
 import Wrapper from '../components/commons/Wrapper';
 import ContactInfo from '../components/ContactComponents/ContactInfo';
 import facebook from '../assets/images/contactIcons/facebook.png';
 import instagram from '../assets/images/contactIcons/instagram.png';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import twitter from '../assets/images/contactIcons/twitter.png';
 import google from '../assets/images/contactIcons/google.png';
+import { userData } from '../store/actions/userData';
+import { sendMessage } from '../store/actions/sendMessage';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import 'react-toastify/dist/ReactToastify.css';
 
 const contactIcons = [
-  { id: 1, img: facebook, url: 'https://www.facebook.com/' },
-  { id: 2, img: instagram, url: 'https://www.instagram.com/' },
-  { id: 3, img: twitter, url: 'https://x.com/?mx=2' },
-  { id: 4, img: google, url: 'https://google.com' },
+  { id: 1, img: facebook, url: 'https://www.facebook.com/technoeducationalacademy/' },
+  { id: 2, img: instagram, url: 'https://www.instagram.com/technoeducationalacademy/' },
+  { id: 3, img: twitter, url: 'https://x.com/technoedacademy' },
+  { id: 4, img: google, url: 'https://www.google.com/search?q=Techno-Educational+Academy&sca_esv=08a7c6c574dce941&sxsrf=ADLYWILvq83lQmBz3EoIlI_6OSfOzAzecQ%3A1722623224074&ei=-CStZqCmBI-akdUPvtCuoA4&ved=0ahUKEwiggunK99aHAxUPTaQEHT6oC-QQ4dUDCBA&uact=5&oq=Techno-Educational+Academy&gs_lp=Egxnd3Mtd2l6LXNlcnAiGlRlY2huby1FZHVjYXRpb25hbCBBY2FkZW15MgYQABgWGB4yCBAAGIAEGKIEMggQABiABBiiBDIIEAAYgAQYogRIyE1QowpYyktwA3gAkAEAmAGbAqABjQiqAQUwLjUuMbgBA8gBAPgBAfgBApgCCaACnAjCAgcQIxiwAxgnwgIOEC4YgAQYsAMYxwEYrwHCAgsQABiABBiwAxiiBMICBBAjGCfCAgUQIRigAZgDAOIDBRIBMSBAiAYBkAYGkgcFMy41LjGgB4Ab&sclient=gws-wiz-serp' },
 ];
 
 function Contact() {
+  const token = sessionStorage.getItem('token');
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.userData.data.user);
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    if (token) {
+      dispatch(userData(token));
+    }
+  }, [dispatch, token]);
+
+  const handleSend = useCallback(async () => {
+    try {
+      const data = {
+        email: email || user?.email,
+        message,
+      };
+      const sendMessageResult = await dispatch(sendMessage(data));
+      if (sendMessage.fulfilled.match(sendMessageResult)) {
+        toast.success('Your message has been sent successfully', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setMessage('');
+        setEmail('');
+      } else {
+        setError({
+          error: sendMessageResult.payload.errors.message,
+        });
+        toast.error('Message was not sent', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, [email, message, dispatch, user]);
   return (
     <Wrapper>
       <div className="contact">
@@ -23,14 +80,37 @@ function Contact() {
             <ContactInfo />
             <h2 className="contact__page__message__title">If You Got Any Questions Please Do Not Hesitate To Send Us a Message</h2>
             <div className="contact__inputs">
-              <textarea placeholder="Message" className="contact__inputs__message" />
+              {!token ? (
+                <input
+                  type="text"
+                  placeholder="Your Mail"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              ) : null}
+              <textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Message"
+                className={error ? 'contact__inputs__message error' : 'contact__inputs__message'}
+                rows={8}
+              />
+              {error ? (
+                <span>{error.error}</span>
+              ) : null}
             </div>
-            <button type="submit" className="orange__btn contact__btn">Send Message</button>
+            <button
+              type="submit"
+              className="orange__btn contact__btn"
+              onClick={handleSend}
+            >
+              Send Message
+            </button>
             <h2 className="connect">Connect with us!</h2>
             <div className="contact__icons">
               {contactIcons.map((icon) => (
                 <div key={icon.id} className="contact__icons__item">
-                  <Link to={icon.url}>
+                  <Link to={icon.url} target="_blank">
                     <img src={icon.img} alt="icon" />
                   </Link>
                 </div>
@@ -49,6 +129,7 @@ function Contact() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </Wrapper>
   );
 }

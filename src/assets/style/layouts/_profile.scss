@@ -1,16 +1,198 @@
 .profile {
   background: #1c2827;
   color: white;
+  padding: 50px;
+
+  &__btn {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 10px;
+
+    & button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+      width: 15%;
+      padding: 8px 42px;
+      border-radius: 20px;
+      box-shadow: -6px -6px 22px 0 rgba(0, 0, 0, 0.5019607843) inset, 6px 6px 35px 0 rgba(255, 255, 255, 0.1019607843) inset;
+      background: #E8920B;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 28.13px;
+      color: #fff;
+      outline: none;
+      border: none;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.4s;
+      text-decoration: none;
+
+      &:hover {
+        background: #D89730;
+        color: #000;
+        box-shadow: 6px 6px 35px 0 #FFFFFF1A inset,-6px -6px 22px 0 #00000080 inset;
+      }
+
+      &:active {
+        background: #A56808;
+        box-shadow: -6px -6px 22px 0 #00000080 inset,6px 6px 35px 0 #FFFFFF1A inset;
+        color: #fff;
+      }
+    }
+  }
 }
 
 .profile__page {
-  background: #060808;
+  background: #000;
   border-radius: 50px;
-  & p{
+  padding-bottom: 50px;
+
+  & .buyTicket__stages__payment__card__content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    border-radius: 50px;
+    padding: 30px 40px;
+  }
+
+  & p {
     text-align: center;
     font-size: 42px;
     font-weight: 600;
     line-height: 49.22px;
     padding: 40px 0;
+  }
+
+  & .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: #194C53;
+    border-radius: 9px;
+    padding: 35px 20px;
+    position: relative;
+
+    &__view {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      margin-bottom: 0;
+      z-index: 1;
+
+      & p {
+        font-size: 42px;
+        font-weight: 900;
+        line-height: 49.22px;
+        color: #fff;
+      }
+    }
+
+    &__number {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      align-items: center;
+      margin-bottom: 60px;
+      z-index: 1;
+
+      & span {
+        color: #fff;
+        margin: 0 3px;
+        font-size: 18px;
+        font-weight: 900;
+        line-height: 49.22px;
+
+        & svg {
+          width: 12px;
+          height: 12px;
+        }
+      }
+
+      & span:nth-child(4) {
+        margin-right: 20px;
+      }
+
+      & span:nth-child(5) {
+        margin-left: 20px;
+      }
+
+      & span:nth-child(8) {
+        margin-right: 20px;
+      }
+
+      & span:nth-child(9) {
+        margin-left: 20px;
+      }
+
+      & span:nth-child(12) {
+        margin-right: 20px;
+      }
+
+      & span:nth-child(13) {
+        margin-left: 20px;
+      }
+    }
+
+    &__owner {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1;
+
+      &__name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & p {
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 23.44px;
+          color: #fff;
+          margin-right: 20px;
+        }
+      }
+
+      &__date {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & p {
+          font-size: 26.91px;
+          font-weight: 600;
+          line-height: 31.53px;
+          color: #fff;
+          margin-right: 4px;
+        }
+
+        & span {
+          font-size: 26.91px;
+          font-weight: 600;
+          line-height: 31.53px;
+          color: #fff;
+        }
+      }
+
+      &__cvc {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & p {
+          font-weight: 600;
+          color: #fff;
+          margin-right: 4px;
+          font-size: 20px;
+          line-height: 23.44px;
+        }
+      }
+    }
   }
 }

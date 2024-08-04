@@ -19,7 +19,7 @@ function BuyTicketStageTwo() {
   const [stageTwo, setStageTwo] = useState(null);
   const list = useSelector((state) => state.scheduleList.list);
   const filteredSchedule = list.filter((item) => item.id === parseInt(scheduleId, 10));
-  const [selectedSeat, setSelectedSeat] = useState(null);
+  const [selectedSeats, setSelectedSeats] = useState([]);
 
   useEffect(() => {
     if (movieId) {
@@ -55,12 +55,18 @@ function BuyTicketStageTwo() {
       return;
     }
     const seatInfo = rowsList.find((row) => row.id === seatId);
-    setSelectedSeat(seatInfo);
+    setSelectedSeats((prevSelectedSeats) => {
+      const isAlreadySelected = prevSelectedSeats.some((seat) => seat.id === seatId);
+      if (isAlreadySelected) {
+        return prevSelectedSeats.filter((seat) => seat.id !== seatId);
+      }
+      return [...prevSelectedSeats, seatInfo];
+    });
   };
 
-  const handleCloseInfo = useCallback(() => {
-    setSelectedSeat(null);
-  }, [setSelectedSeat]);
+  const handleRemoveSeat = (seatId) => {
+    setSelectedSeats((prevSelectedSeats) => prevSelectedSeats.filter((seat) => seat.id !== seatId));
+  };
 
   const stageClassName = (stageTwo === 2 ? 'buyTicket__stages__header__block__tickets active two' : 'buyTicket__stages__header__block__tickets');
   const stageClassNameTwo = (stageTwo === 2 ? 'buyTicket__stages__header__block__tickets active' : 'buyTicket__stages__header__block__tickets');
@@ -70,13 +76,19 @@ function BuyTicketStageTwo() {
   }, [movieId, scheduleId]);
 
   const handleNext = useCallback(() => {
-    if (selectedSeat) {
-      const row = selectedSeat.rowName;
-      const seat = selectedSeat.seatCount;
-      const { price } = selectedSeat.seats[0];
-      navigate(`/ticket/buy/${movieId}/${scheduleId}/${date}/${hour}/${stageTwo}/${row}/${seat}/${price}`);
+    if (selectedSeats.length > 0) {
+      const seatsInfo = selectedSeats.map((seat) => ({
+        row: seat.rowName,
+        seat: seat.seatCount,
+        price: seat.seats[0].price,
+      }));
+
+      const queryString = seatsInfo
+        .map((seat) => `${seat.row}&${seat.seat}&${seat.price}`);
+      navigate(`/ticket/buy/${movieId}/${scheduleId}/${date}/${hour}/${stageTwo}/${queryString}`);
     }
-  }, [selectedSeat, scheduleId, movieId, stageTwo, filteredSchedule, navigate]);
+  }, [selectedSeats, scheduleId, movieId, stageTwo, date, hour, navigate]);
+
   return (
     <Wrapper>
       {loading ? (
@@ -149,7 +161,7 @@ function BuyTicketStageTwo() {
                             onClick={() => handleSeatClick(item.id, item.seats[0].status)}
                             className={`
                               ${item.seats[0].status === 'Available' ? 'green' : 'red'} 
-                              ${selectedSeat && selectedSeat.id === item.id ? 'white' : ''}
+                              ${selectedSeats.some((seat) => seat.id === item.id) ? 'white' : ''}
                             `}
                           />
                         ))}
@@ -159,15 +171,24 @@ function BuyTicketStageTwo() {
                   </div>
                 </div>
               </div>
-              {selectedSeat && (
+              {selectedSeats.length > 0 && (
                 <div className="buyTicket__stages__seats__block__info">
-                  <div className="buyTicket__stages__seats__block__info__text">
-                    <strong>{`${selectedSeat.rowName}`}</strong>
-                    <p>row</p>
-                    <strong>{`${selectedSeat.seatCount}`}</strong>
-                    <p>seat</p>
-                    <p>{`$${selectedSeat.seats[0].price}`}</p>
-                    <FontAwesomeIcon onClick={handleCloseInfo} icon={faXmark} />
+                  <div className="container">
+                    <div className="buyTicket__stages__seats__block__info__content">
+                      {selectedSeats.map((seat) => (
+                        <div className="buyTicket__stages__seats__block__info__text" key={seat.id}>
+                          <strong>{`${seat.rowName}`}</strong>
+                          <p>row</p>
+                          <strong>{`${seat.seatCount}`}</strong>
+                          <p>seat</p>
+                          <p>{`$${seat.seats[0].price}`}</p>
+                          <FontAwesomeIcon
+                            onClick={() => handleRemoveSeat(seat.id)}
+                            icon={faXmark}
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}

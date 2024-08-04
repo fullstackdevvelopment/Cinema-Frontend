@@ -40,6 +40,33 @@
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 50px;
+
+  .slider-control-centerleft {
+    & .cinema__home__latest__row__btn {
+      right: 5px;
+      position: relative;
+    }
+  }
+
+  .slider-control-centerright {
+    & .cinema__home__latest__row__btn {
+      left: 5px;
+      position: relative;
+    }
+  }
+  &__btn {
+    color: #e8920b;
+    font-size: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      color: rgba(232, 146, 11, 0.8);
+    }
+  }
 }
 
 .css-b62m3t-container .css-1h3ey4k-control {

@@ -10,6 +10,37 @@
   }
 }
 
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .cinema__home__latest__cart {
+    width: 100%;
+    margin: 0 8px;
+    padding-top: 58px;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &.slide-visible .cinema__home__latest__cart {
+    width: 100%;
+    margin: 0 8px;
+    padding-top: 58px;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
 .cinema__home__latest__cart__item{
   width: 100%;
 }

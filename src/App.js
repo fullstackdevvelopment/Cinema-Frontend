@@ -17,6 +17,8 @@ import NotFound from './pages/NotFound';
 import BuyTicketStageThree from './pages/BuyTickets/BuyTicketStageThree';
 import BuyTicketStageFinal from './pages/BuyTickets/BuyTicketStageFinal';
 import ScrollToTop from './helpers/ScrollToTop';
+import Verification from './pages/Verification';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   return (
@@ -32,11 +34,13 @@ function App() {
         <Route path="/ticket/buy/:movieId" element={<BuyTicketStageOne />} />
         <Route path="/ticket/buy/:movieId/:scheduleId/" element={<BuyTicketStageOne />} />
         <Route path="/ticket/buy/:movieId/:scheduleId/:date/:hour/:stage" element={<BuyTicketStageTwo />} />
-        <Route path="/ticket/buy/:movieId/:scheduleId/:date/:hour/:stage/:row/:seat/:price" element={<BuyTicketStageThree />} />
-        <Route path="/ticket/buy/:movieId/:scheduleId/:date/:hour/:stage/:row/:seat/:price/final" element={<BuyTicketStageFinal />} />
+        <Route path="/ticket/buy/:movieId/:scheduleId/:date/:hour/:stage/:queryString" element={<BuyTicketStageThree />} />
+        <Route path="/ticket/buy/:movieId/:scheduleId/:date/:hour/:stage/:seatsParam/final" element={<BuyTicketStageFinal />} />
         <Route path="/signIn" element={<SignIn />} />
-        <Route path="/reset" element={<Reset />} />
+        <Route path="/reset/password" element={<Reset />} />
+        <Route path="/reset/password/:verificationCode" element={<ResetPassword />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/email/verification" element={<Verification />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<Navigate to="/not_found" />} />
         <Route path="/not_found" element={<NotFound />} />

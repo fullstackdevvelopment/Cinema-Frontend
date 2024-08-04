@@ -1,17 +1,15 @@
 import React, { useCallback, useEffect } from 'react';
 import NukaCarousel from 'nuka-carousel';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import ReactStars from 'react-rating-stars-component';
+import Rating from '@mui/material/Rating';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { movieList } from '../../store/actions/movieList';
 
-function Carousel() {
+function HomeCarousel() {
   const dispatch = useDispatch();
   const list = useSelector((state) => state.movieList.list);
 
@@ -26,13 +24,13 @@ function Carousel() {
       document.querySelector('.carousel__button.right').click();
     }
   }, []);
-  console.log(list);
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [handleKeyDown]);
+
   return (
     <div className="home__carousel">
       <NukaCarousel
@@ -65,15 +63,13 @@ function Carousel() {
                 </div>
                 <div className="carousel__block__slide__content">
                   <h2>{movie?.title}</h2>
-                  <ReactStars
-                    className="rating"
-                    count={5}
-                    size={30}
-                    isHalf
-                    edit={false}
-                    value={movie?.rating}
-                    color="white"
-                    activeColor="orange"
+                  <Rating
+                    name="movie-rating"
+                    value={movie?.rating || 0}
+                    precision={0.5}
+                    readOnly
+                    size="large"
+                    sx={{ color: '#e8920b' }}
                   />
                   <p className="carousel__block__slide__content__voters">{`${movie?.voters} Voters`}</p>
                   <div className="carousel__block__slide__content__photo">
@@ -121,4 +117,4 @@ function Carousel() {
   );
 }
 
-export default Carousel;
+export default HomeCarousel;

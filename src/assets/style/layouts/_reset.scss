@@ -2,7 +2,110 @@
   text-align: center;
   padding-top: 50px;
   align-items: center;
-  background-color: rgb(30, 30, 30);
+  background-color: #1c2827;
+
+  &__verify {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1c2827;
+
+    &__block {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 300px;
+
+      &__content {
+        border-radius: 30px;
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        padding: 40px 10px;
+
+        & label {
+          width: 45%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+
+          & svg {
+            color: #000;
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+          }
+          & input {
+            width: 100%;
+            margin-bottom: 5px;
+            background: rgba(255, 255, 255, 0.6980392157);
+            padding: 10px 20px;
+
+            &::placeholder {
+              color: #135F55;
+              letter-spacing: 0;
+              font-weight: 700;
+              text-align: left;
+              font-size: 15px;
+              line-height: 21.09px;
+            }
+
+            &:focus-visible {
+              background: #fff;
+            }
+          }
+        }
+
+        & button {
+          margin-top: 20px;
+        }
+
+        & span {
+          color: #cd3d64;
+          font-weight: bold;
+          background: #fff;
+          border: 2px solid #cd3d64;
+          border-radius: 7px;
+          padding: 6px 18px;
+          width: 45%;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          font-size: 12px;
+          margin-bottom: 10px;
+
+          & svg {
+            margin-right: 5px;
+          }
+        }
+      }
+
+
+      & h1 {
+        color: #fff;
+        margin-bottom: 10px;
+      }
+
+      & p {
+        color: #fff;
+        width: 27%;
+        background: #243937;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 5px;
+        border: 1px solid #fff;
+      }
+    }
+  }
+
   .reset__password__box {
     width: 559px;
     height: 424px;
@@ -10,7 +113,8 @@
     border-radius: 50px;
     display: inline-block;
     margin-bottom: 100px;
-    & button{
+
+    & button {
       margin-top: 30px;
       width: 440px;
       height: 50px;
@@ -40,11 +144,39 @@
     .reset__password__input__div {
       padding-top: 30px;
       text-align: center;
-      & input{
-        width: 440px;
-        height: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      & .reset__error {
+        color: #cd3d64;
+        font-weight: bold;
+        background: #fff;
+        border: 2px solid #cd3d64;
+        border-radius: 7px;
+        padding: 6px 18px;
+        width: 79%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        & svg {
+          margin-right: 5px;
+        }
+      }
+
+      & input {
+        width: 79%;
+        padding: 17px 20px;
+        margin-bottom: 5px;
+      }
+
+      & input.sign__in__input.status {
+        border: 2px solid #cd3d64;
       }
     }
+
     .reset__password__btn {
       padding-top: 30px;
     }

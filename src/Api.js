@@ -59,8 +59,8 @@ class Api {
     return api.post('/payment/create-payment-intent', { amount, currency });
   }
 
-  static updatePaymentStatus(paymentIntentId, status) {
-    return api.post('/payment/update-payment-status', { paymentIntentId, status });
+  static updatePaymentStatus(stripePaymentId, status) {
+    return api.post('/payment/update-payment-status', { stripePaymentId, status });
   }
 
   static handleWebhook(body) {
@@ -73,6 +73,30 @@ class Api {
 
   static createBooking(data) {
     return api.post('/booking/create', data);
+  }
+
+  static sendMessage(data) {
+    return api.post('/email/send', data);
+  }
+
+  static emailVerification(payload) {
+    return api.post('/users/verifications', payload);
+  }
+
+  static resetPassword(payload) {
+    return api.post('/users/reset/password', payload);
+  }
+
+  static resetPasswordFinished({ verificationCode, password }) {
+    return api.post(`/users/reset/password/${verificationCode}`, { password });
+  }
+
+  static uploadTicket(data) {
+    return api.post('/users/pdf/upload', data);
+  }
+
+  static userUpdate(data) {
+    return api.put('/users/update', data);
   }
 }
 

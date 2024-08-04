@@ -18,6 +18,10 @@
       align-items: center;
       justify-content: center;
 
+      & .MuiSvgIcon-root.MuiSvgIcon-fontSizeInherit.css-1vooibu-MuiSvgIcon-root {
+        color: #e8920b;
+      }
+
       &__title {
         font-size: 30px;
         font-weight: 600;

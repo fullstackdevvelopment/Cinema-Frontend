@@ -20,6 +20,7 @@ function Header() {
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
   const location = useLocation();
+  const path = location.pathname;
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -63,7 +64,15 @@ function Header() {
     navigate('/settings');
   }, [navigate]);
 
-  const headerClassName = (location.pathname === '/settings' || location.pathname === '/contact' || location.pathname === '/signIn' || location.pathname === '/signUp') ? 'header__contact' : 'header';
+  const headerClassName = (
+    path === '/email/verification'
+    || path === '/reset/password'
+    || path === '/settings'
+    || path === '/contact'
+    || path === '/signIn'
+    || path === '/signUp'
+    || /^\/reset\/password\/[^/]+$/.test(path)
+  ) ? 'header__contact' : 'header';
 
   return (
     <div className={headerClassName}>
@@ -142,15 +151,16 @@ function Header() {
                   <div>
                     <p>{`${user?.firstName} ${user?.lastName}`}</p>
                     <p>{user?.email}</p>
+                    <p>{`Balance: $${user?.cards[0]?.balance}`}</p>
                   </div>
-                </MenuItem>,
-                <MenuItem key="logout" onClick={handleLogout}>
-                  <img src={logOut} alt="logout" />
-                  <p>Sign Out</p>
                 </MenuItem>,
                 <MenuItem key="settings" onClick={handleSettings}>
                   <FontAwesomeIcon icon={faGear} />
                   <p>Settings</p>
+                </MenuItem>,
+                <MenuItem key="logout" onClick={handleLogout}>
+                  <img src={logOut} alt="logout" />
+                  <p>Sign Out</p>
                 </MenuItem>,
               ] : (
                 <MenuItem key="signin" onClick={() => navigate('/signIn')}>Sign In</MenuItem>

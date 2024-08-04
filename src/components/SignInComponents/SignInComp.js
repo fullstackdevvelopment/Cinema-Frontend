@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import signInData from '../../assets/data/signInData/signInData';
 import { signIn } from '../../store/actions/signIn';
 
@@ -15,7 +15,14 @@ function SignInComp() {
   const { token } = userData || {};
   const userToken = sessionStorage.getItem('token');
   const [error, setError] = useState(null);
-  console.log(error);
+  const [type, setType] = useState(false);
+  const [typeIcon, setTypeIcon] = useState(faEye);
+
+  const handleTypePassword = useCallback(() => {
+    setType((prevType) => !prevType);
+    setTypeIcon((prevTypeIcon) => (prevTypeIcon === faEye ? faEyeSlash : faEye));
+  }, []);
+
   useEffect(() => {
     if (token) {
       navigate('/home');
@@ -38,8 +45,8 @@ function SignInComp() {
       }));
 
       if (signIn.rejected.match(signInResult)) {
-        console.log(signInResult.payload);
-        if (signInResult.payload.message === 'Not Found') {
+        console.log(signInResult);
+        if (signInResult.error.message === 'Rejected') {
           setError((prevErrors) => ({
             ...prevErrors,
             error: 'Username or Password is incorrect',
@@ -57,7 +64,7 @@ function SignInComp() {
       console.log(e);
     }
   }, [dispatch, userName, password]);
-
+  console.log(error);
   return (
     <div className="signIn">
       <div className="container">
@@ -84,9 +91,10 @@ function SignInComp() {
                 id="password"
                 className="sign__in__input"
                 placeholder="Password"
-                type="password"
+                type={type ? 'text' : 'password'}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              <FontAwesomeIcon className="eye" icon={typeIcon} onClick={handleTypePassword} />
               {error?.password ? (
                 <span>
                   <FontAwesomeIcon icon={faTriangleExclamation} />
@@ -101,7 +109,7 @@ function SignInComp() {
               ) : null}
             </label>
             <div className="reset">
-              <Link to="/reset" className="reset__title">Forgot Password?</Link>
+              <Link to="/reset/password" className="reset__title">Forgot Password?</Link>
             </div>
             <div>
               <h2 className="signIn__or">Or</h2>

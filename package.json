@@ -11,6 +11,9 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/icons-material": "^5.16.1",
     "@mui/material": "^5.16.1",
+    "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf-viewer/default-layout": "^3.12.0",
+    "@react-pdf/renderer": "^3.4.4",
     "@reduxjs/toolkit": "^2.2.5",
     "@stripe/react-stripe-js": "^2.7.3",
     "@stripe/stripe-js": "^4.1.0",
@@ -19,10 +22,15 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
     "d3-ease": "^3.0.1",
+    "date-fns": "^3.6.0",
+    "html2canvas": "^1.4.1",
+    "jsbarcode": "^3.11.6",
+    "jspdf": "^2.5.1",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
     "moment-timezone": "^0.5.45",
     "nuka-carousel": "^7.0.0",
+    "pdfjs-dist": "^3.4.120",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -33,7 +41,7 @@
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
     "react-spinners": "^0.14.1",
-    "react-stars": "^2.2.5",
+    "react-toastify": "^10.0.5",
     "web-vitals": "^2.1.4"
   },
   "eslintConfig": {
@@ -67,7 +75,6 @@
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "react-rating-stars-component": "^2.2.0",
     "sass": "^1.72.0"
   }
 }

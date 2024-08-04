@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,12 +10,12 @@ import Wrapper from '../../components/commons/Wrapper';
 import map from '../../assets/images/map.png';
 import { singleMovie } from '../../store/actions/singleMovie';
 import { userData } from '../../store/actions/userData';
-import { createPaymentIntent } from '../../store/actions/payment';
+import { createPaymentIntent, updatePaymentStatus } from '../../store/actions/payment';
 import { createBooking } from '../../store/actions/createBooking';
 
 function BuyTicketStageThree() {
   const {
-    stage, movieId, date, hour, row, seat, price, scheduleId,
+    movieId, scheduleId, date, hour, stage, queryString,
   } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,6 +26,11 @@ function BuyTicketStageThree() {
   const [loading, setLoading] = useState(false);
   const [stageThree, setStageThree] = useState(parseInt(stage, 10) + 1);
   const userToken = sessionStorage.getItem('token');
+  const seatParams = queryString ? queryString.split(',') : [];
+  const selectedSeats = seatParams.map((param) => {
+    const [row, seat, price] = param.split('&');
+    return { row, seat, price };
+  });
 
   useEffect(() => {
     if (!userToken) {
@@ -49,31 +54,40 @@ function BuyTicketStageThree() {
     if (!userConfirmed) {
       return;
     }
+
     try {
-      const amount = price * 100;
+      const amount = selectedSeats.reduce((acc, seat) => acc + parseInt(seat.price, 10), 0) * 100;
       const currency = 'usd';
 
-      const result = await dispatch(createPaymentIntent({ amount, currency }));
+      const paymentResult = await dispatch(createPaymentIntent({ amount, currency }));
 
-      if (createPaymentIntent.fulfilled.match(result)) {
-        const data = {
+      if (createPaymentIntent.fulfilled.match(paymentResult)) {
+        const bookingData = selectedSeats.map((seat) => ({
           userId: user.id,
           movieId: singleData.id,
-          bookingRow: row,
-          seatNumber: seat,
+          bookingRow: seat.row,
+          seatNumber: seat.seat,
           status: 'Booked',
-          ticketPrice: price,
+          ticketPrice: seat.price,
           scheduleId,
-        };
-        const bookingResult = await dispatch(createBooking(data));
+        }));
+        const { stripePaymentId } = paymentResult.payload.payment;
+        const paymentStatusResult = await dispatch(updatePaymentStatus({ stripePaymentId, status: 'succeeded' }));
+        if (updatePaymentStatus.fulfilled.match(paymentStatusResult)) {
+          const bookingResults = await dispatch(createBooking(bookingData));
 
-        if (createBooking.fulfilled.match(bookingResult)) {
-          navigate(`/ticket/buy/${movieId}/${scheduleId}/${date}/${hour}/${stageThree}/${row}/${seat}/${price}/final`);
+          if (createBooking.fulfilled.match(bookingResults)) {
+            const seatsParam = selectedSeats.map((seat) => `${seat.row}&${seat.seat}&${seat.price}`);
+            const newPath = `/ticket/buy/${movieId}/${scheduleId}/${date}/${hour}/${stageThree}/${seatsParam}/final`;
+            navigate(newPath);
+          } else {
+            console.error('Booking failed:', bookingResults);
+          }
         } else {
-          console.error('Booking failed:', bookingResult.payload);
+          console.error(paymentStatusResult.payload);
         }
       } else {
-        console.error(result.payload);
+        console.error(paymentResult.payload);
       }
     } catch (error) {
       console.error('Error creating payment ID:', error);
@@ -151,14 +165,23 @@ function BuyTicketStageThree() {
                           <p>{`${hour} AM`}</p>
                         </div>
                         <div className="buyTicket__stages__payment__block__content__desc__text__item">
-                          <p>1 Ticket</p>
+                          <p>{`${selectedSeats.length} Ticket(s)`}</p>
                         </div>
+                        {selectedSeats.map((seat) => (
+                          <div
+                            key={`${seat.row}${seat.seat}${seat.price}`}
+                            className="buyTicket__stages__payment__block__content__desc__text__item"
+                          >
+                            <p>
+                              {seat.row}
+                            </p>
+                            <p>
+                              {seat.seat}
+                            </p>
+                          </div>
+                        ))}
                         <div className="buyTicket__stages__payment__block__content__desc__text__item">
-                          <p>{row}</p>
-                          <p>{seat}</p>
-                        </div>
-                        <div className="buyTicket__stages__payment__block__content__desc__text__item">
-                          <p>{`$${price}`}</p>
+                          <p>{`Total Price: $${selectedSeats.reduce((sum, seat) => sum + parseFloat(seat.price), 0)}`}</p>
                         </div>
                       </div>
                     </div>
@@ -226,12 +249,6 @@ function BuyTicketStageThree() {
                           </div>
                         </>
                       )}
-                    </div>
-                    <div className="buyTicket__stages__payment__card__content__new">
-                      <p>
-                        Add New Card
-                        <FontAwesomeIcon icon={faPlus} />
-                      </p>
                     </div>
                   </div>
                 </div>

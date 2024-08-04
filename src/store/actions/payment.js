@@ -15,9 +15,9 @@ export const createPaymentIntent = createAsyncThunk(
 
 export const updatePaymentStatus = createAsyncThunk(
   'payment/updatePaymentStatus',
-  async ({ paymentIntentId, status }, thunkAPI) => {
+  async ({ stripePaymentId, status }, thunkAPI) => {
     try {
-      const { data } = await Api.updatePaymentStatus(paymentIntentId, status);
+      const { data } = await Api.updatePaymentStatus(stripePaymentId, status);
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.response.data);

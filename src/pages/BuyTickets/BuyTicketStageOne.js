@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactStars from 'react-rating-stars-component';
 import Checkbox from '@mui/material/Checkbox';
 import moment from 'moment-timezone';
 import { PulseLoader, RingLoader } from 'react-spinners';
 import _ from 'lodash';
 import { Alert, Snackbar } from '@mui/material';
+import Rating from '@mui/material/Rating';
 import Wrapper from '../../components/commons/Wrapper';
 import { singleMovie } from '../../store/actions/singleMovie';
 import { scheduleList } from '../../store/actions/scheduleList';
@@ -136,15 +136,14 @@ function BuyTicketStageOne() {
                       <div className="buyTicket__block__item__desc">
                         <div className="buyTicket__block__item__desc__rating">
                           <h2>{singleData?.title}</h2>
-                          <ReactStars
+                          <Rating
                             className="rating"
-                            count={5}
-                            size={30}
-                            isHalf
-                            edit={false}
-                            value={singleData?.rating}
-                            color="white"
-                            activeColor="orange"
+                            name="movie-rating"
+                            value={singleData?.rating || 0}
+                            precision={0.5}
+                            readOnly
+                            size="small"
+                            sx={{ color: '#e8920b' }}
                           />
                         </div>
                         <div className="buyTicket__block__item__desc__hour">

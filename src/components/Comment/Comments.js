@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import NukaCarousel from 'nuka-carousel';
-import { easeQuadInOut, easeQuadOut } from 'd3-ease';
+import Carousel from 'nuka-carousel';
 import { Alert, Button, Snackbar } from '@mui/material';
-import ReactStars from 'react-rating-stars-component';
+import Rating from '@mui/material/Rating';
 import CommentsBlock from './CommentsBlock';
 import { reviewList } from '../../store/actions/reviewList';
 import { createReview } from '../../store/actions/createReview';
@@ -22,7 +21,7 @@ function Comments(props) {
 
   useEffect(() => {
     dispatch(reviewList(movieId));
-  }, [movieId]);
+  }, [movieId, dispatch]);
 
   const handleCreateComment = useCallback(async () => {
     try {
@@ -38,8 +37,6 @@ function Comments(props) {
         setRatingKey(Date.now());
         setSnackbarMessage('Thanks for your comment');
         setSnackbarSeverity('success');
-      } else if (createReviewResult.error.message === 'Rejected') {
-        console.error(createReviewResult.payload.errors);
       }
     } catch (e) {
       setSnackbarMessage(e.message || 'Something went wrong');
@@ -49,24 +46,32 @@ function Comments(props) {
     }
   }, [commentText, rating, movieId, user, dispatch]);
 
-  const handleRatingChange = useCallback((newRating) => {
+  const handleRatingChange = useCallback((event, newRating) => {
     setRating(newRating);
   }, []);
+
+  const getSlidesToShow = (commentsCount) => {
+    if (commentsCount === 1) {
+      return 1;
+    } if (commentsCount === 2) {
+      return 2;
+    }
+    return 3;
+  };
+
   return (
     <>
       <div className="comments">
         <div className="container">
           <h1 className="comments__header">What People Say</h1>
           <div className="comments__block">
-            <NukaCarousel
-              slidesToShow={3}
+            <Carousel
               cellSpacing={20}
               dragging
-              slidesToScroll={1}
+              slidesToShow={getSlidesToShow(movieComments?.length)}
               wrapAround
-              easing={easeQuadInOut}
-              edgeEasing={easeQuadOut}
               speed={400}
+              slidesToScroll={1}
               renderBottomCenterControls={null}
               renderCenterLeftControls={({ previousSlide }) => (
                 <span onClick={previousSlide}>
@@ -90,7 +95,7 @@ function Comments(props) {
                   rating={item.rating}
                 />
               ))}
-            </NukaCarousel>
+            </Carousel>
           </div>
           <div className="comments__create">
             <h2 className="comments__create__title">Write your comment about the film</h2>
@@ -108,16 +113,15 @@ function Comments(props) {
             <div className="comments__create__btn">
               <div className="comments__create__rating">
                 <h2 className="comments__create__rating__title">Select Rating</h2>
-                <ReactStars
+                <Rating
                   key={ratingKey}
                   className="rating"
-                  count={5}
-                  size={30}
-                  isHalf
-                  value={rating}
                   onChange={handleRatingChange}
-                  color="white"
-                  activeColor="orange"
+                  name="simple-controlled"
+                  value={rating || 0}
+                  precision={0.5}
+                  size="small"
+                  sx={{ color: '#e8920b' }}
                 />
               </div>
               <Button onClick={handleCreateComment} className="orange__btn">SEND</Button>
