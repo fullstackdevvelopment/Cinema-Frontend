@@ -117,7 +117,7 @@ function SignInComp() {
             <div className="software__icons">
               {signInData.map((icon) => (
                 <div key={icon.id} className="software__icons__box">
-                  <Link to={icon.url}>
+                  <Link target="_blank" to={icon.url}>
                     <img
                       className="software__icons__img"
                       src={icon.image}

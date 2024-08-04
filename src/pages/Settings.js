@@ -76,6 +76,7 @@ function Settings() {
         draggable: true,
         progress: undefined,
       });
+      setErrors({});
     } else if (userUpdateResult.error.message === 'Rejected') {
       const apiErrors = userUpdateResult.payload.errors;
       setErrors({

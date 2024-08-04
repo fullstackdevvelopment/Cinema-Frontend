@@ -3,7 +3,7 @@ import { FaRegCopyright } from 'react-icons/fa';
 import { LiaPhoneVolumeSolid } from 'react-icons/lia';
 import { CiLocationOn } from 'react-icons/ci';
 import { TfiEmail } from 'react-icons/tfi';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import googlePlay from '../../assets/images/icons/google-play.webp';
 import appStore from '../../assets/images/icons/app-store.webp';
 import instagram from '../../assets/images/icons/instagram.webp';
@@ -73,18 +73,18 @@ function Footer() {
           </div>
           <div className="footer__menu__icon">
             <h3>Follow Us</h3>
-            <div className="footer__menu__icon__block">
+            <Link target="_blank" to="https://www.facebook.com/technoeducationalacademy/" className="footer__menu__icon__block">
               <img src={facebook} alt="facebook" />
-            </div>
-            <div className="footer__menu__icon__block">
+            </Link>
+            <Link target="_blank" to="https://www.instagram.com/technoeducationalacademy/" className="footer__menu__icon__block">
               <img src={instagram} alt="instagram" />
-            </div>
-            <div className="footer__menu__icon__block">
+            </Link>
+            <Link target="_blank" to="https://x.com/technoedacademy" className="footer__menu__icon__block">
               <img src={twitter} alt="twitter" />
-            </div>
-            <div className="footer__menu__icon__block">
+            </Link>
+            <Link target="_blank" to="https://www.google.com/search?q=Techno-Educational+Academy&sca_esv=08a7c6c574dce941&sxsrf=ADLYWILvq83lQmBz3EoIlI_6OSfOzAzecQ%3A1722623224074&ei=-CStZqCmBI-akdUPvtCuoA4&ved=0ahUKEwiggunK99aHAxUPTaQEHT6oC-QQ4dUDCBA&uact=5&oq=Techno-Educational+Academy&gs_lp=Egxnd3Mtd2l6LXNlcnAiGlRlY2huby1FZHVjYXRpb25hbCBBY2FkZW15MgYQABgWGB4yCBAAGIAEGKIEMggQABiABBiiBDIIEAAYgAQYogRIyE1QowpYyktwA3gAkAEAmAGbAqABjQiqAQUwLjUuMbgBA8gBAPgBAfgBApgCCaACnAjCAgcQIxiwAxgnwgIOEC4YgAQYsAMYxwEYrwHCAgsQABiABBiwAxiiBMICBBAjGCfCAgUQIRigAZgDAOIDBRIBMSBAiAYBkAYGkgcFMy41LjGgB4Ab&sclient=gws-wiz-serp" className="footer__menu__icon__block">
               <img src={chrome} alt="chrome" />
-            </div>
+            </Link>
           </div>
           <div className="footer__block__icon">
             <img src={googlePlay} alt="googlePlay" />
