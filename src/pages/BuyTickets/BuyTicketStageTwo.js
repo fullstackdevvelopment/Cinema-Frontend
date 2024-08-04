@@ -5,6 +5,7 @@ import { PulseLoader, RingLoader } from 'react-spinners';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '@mui/material';
+import { toast, ToastContainer } from 'react-toastify';
 import Wrapper from '../../components/commons/Wrapper';
 import { scheduleList } from '../../store/actions/scheduleList';
 import line from '../../assets/images/icons/line.png';
@@ -86,6 +87,16 @@ function BuyTicketStageTwo() {
       const queryString = seatsInfo
         .map((seat) => `${seat.row}&${seat.seat}&${seat.price}`);
       navigate(`/ticket/buy/${movieId}/${scheduleId}/${date}/${hour}/${stageTwo}/${queryString}`);
+    } else {
+      toast.error('Please select a seat for your ticket', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   }, [selectedSeats, scheduleId, movieId, stageTwo, date, hour, navigate]);
 
@@ -193,10 +204,11 @@ function BuyTicketStageTwo() {
                 </div>
               )}
               <div className="buyTicket__stages__seats__btn">
-                <Button onClick={handleBack}>Cancel</Button>
+                <Button onClick={handleBack}>Go Back</Button>
                 <Button onClick={handleNext}>Next</Button>
               </div>
             </div>
+            <ToastContainer />
           </div>
         </>
       )}
