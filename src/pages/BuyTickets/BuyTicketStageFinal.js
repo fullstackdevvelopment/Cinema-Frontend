@@ -44,8 +44,6 @@ function BuyTicketStageFinal() {
     }
   }, [resultP, movie]);
 
-  console.log(data);
-
   useEffect(() => {
     const parts = seatsParam.split(',');
     const processedResultP = parts.flatMap((part) => part.split('&'));

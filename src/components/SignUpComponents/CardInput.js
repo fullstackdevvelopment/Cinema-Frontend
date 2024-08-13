@@ -1,7 +1,6 @@
 import React from 'react';
-import { FaCircle } from 'react-icons/fa';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faCircle, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import map from '../../assets/images/map.png';
 import CardNumber from '../../assets/data/CardNumber';
 
@@ -61,7 +60,7 @@ function CardInput(props) {
           <div className="card__number">
             {CardNumber?.map((c) => (
               <span key={c.id}>
-                {cardNumber?.length > c.length ? cardNumber[c?.length] : <FaCircle />}
+                {cardNumber?.length > c.length ? cardNumber[c?.length] : <FontAwesomeIcon icon={faCircle} />}
               </span>
             ))}
           </div>

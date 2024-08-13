@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCheck,
   faEye,
-  faEyeSlash,
+  faEyeSlash, faStarOfLife,
   faTriangleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -55,6 +55,7 @@ function DataInput(props) {
       onChange: (e) => setFirstName(e.target.value),
       value: firstName,
       error: errors?.firstName,
+      required: true,
     },
     {
       id: 2,
@@ -63,6 +64,7 @@ function DataInput(props) {
       onChange: (e) => setLastName(e.target.value),
       value: lastName,
       error: errors?.lastName,
+      required: true,
     },
     {
       id: 3,
@@ -71,6 +73,7 @@ function DataInput(props) {
       onChange: (e) => setUserName(e.target.value),
       value: userName,
       error: errors?.userName,
+      required: true,
     },
     {
       id: 4,
@@ -87,6 +90,7 @@ function DataInput(props) {
       onChange: (e) => setEmail(e.target.value),
       value: email,
       error: errors?.email,
+      required: true,
     },
     {
       id: 6,
@@ -105,6 +109,7 @@ function DataInput(props) {
       error: errors?.password,
       icon: typeIcon,
       handleType: handleTypePassword,
+      required: true,
     },
     {
       id: 8,
@@ -123,6 +128,7 @@ function DataInput(props) {
       error: errors?.repeatPassword,
       icon: typeIconTwo,
       handleType: handleTypeRepeatPassword,
+      required: true,
     },
     {
       id: 10,
@@ -145,7 +151,14 @@ function DataInput(props) {
             type={i.type}
             onChange={i.onChange}
             value={i.value}
+            autoComplete="new-password"
           />
+          {i.required ? (
+            <FontAwesomeIcon
+              icon={faStarOfLife}
+              className="required__icon"
+            />
+          ) : null}
           {i.icon ? (
             <FontAwesomeIcon
               icon={i.icon}

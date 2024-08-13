@@ -19,6 +19,7 @@ import BuyTicketStageFinal from './pages/BuyTickets/BuyTicketStageFinal';
 import ScrollToTop from './helpers/ScrollToTop';
 import Verification from './pages/Verification';
 import ResetPassword from './pages/ResetPassword';
+import CheckoutPage from './pages/BuyTickets/CheckoutPage';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/ticket/buy/:movieId/:scheduleId/" element={<BuyTicketStageOne />} />
         <Route path="/ticket/buy/:movieId/:scheduleId/:date/:hour/:stage" element={<BuyTicketStageTwo />} />
         <Route path="/ticket/buy/:movieId/:scheduleId/:date/:hour/:stage/:queryString" element={<BuyTicketStageThree />} />
+        <Route path="/:movieId/:scheduleId/:date/:hour/:stageThree/:seatsParam/checkout" element={<CheckoutPage />} />
         <Route path="/ticket/buy/:movieId/:scheduleId/:date/:hour/:stage/:seatsParam/final" element={<BuyTicketStageFinal />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/reset/password" element={<Reset />} />

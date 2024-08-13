@@ -4,14 +4,11 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { PulseLoader, RingLoader } from 'react-spinners';
-import { FaCircle } from 'react-icons/fa';
+import { ClipLoader, PulseLoader, RingLoader } from 'react-spinners';
 import Wrapper from '../../components/commons/Wrapper';
-import map from '../../assets/images/map.png';
 import { singleMovie } from '../../store/actions/singleMovie';
 import { userData } from '../../store/actions/userData';
-import { createPaymentIntent, updatePaymentStatus } from '../../store/actions/payment';
-import { createBooking } from '../../store/actions/createBooking';
+import { createPaymentIntent } from '../../store/actions/payment';
 
 function BuyTicketStageThree() {
   const {
@@ -21,8 +18,6 @@ function BuyTicketStageThree() {
   const navigate = useNavigate();
   const singleData = useSelector((state) => state.singleMovie.list);
   const user = useSelector((state) => state.userData.data.user);
-  const paymentStatus = useSelector((state) => state.payment.status);
-  const paymentError = useSelector((state) => state.payment.error);
   const [loading, setLoading] = useState(false);
   const [stageThree, setStageThree] = useState(parseInt(stage, 10) + 1);
   const userToken = sessionStorage.getItem('token');
@@ -31,6 +26,7 @@ function BuyTicketStageThree() {
     const [row, seat, price] = param.split('&');
     return { row, seat, price };
   });
+  const [paymentLoading, setPaymentLoading] = useState(false);
 
   useEffect(() => {
     if (!userToken) {
@@ -56,36 +52,18 @@ function BuyTicketStageThree() {
     }
 
     try {
+      setPaymentLoading(true);
       const amount = selectedSeats.reduce((acc, seat) => acc + parseInt(seat.price, 10), 0) * 100;
       const currency = 'usd';
 
       const paymentResult = await dispatch(createPaymentIntent({ amount, currency }));
 
       if (createPaymentIntent.fulfilled.match(paymentResult)) {
-        const bookingData = selectedSeats.map((seat) => ({
-          userId: user.id,
-          movieId: singleData.id,
-          bookingRow: seat.row,
-          seatNumber: seat.seat,
-          status: 'Booked',
-          ticketPrice: seat.price,
-          scheduleId,
-        }));
-        const { stripePaymentId } = paymentResult.payload.payment;
-        const paymentStatusResult = await dispatch(updatePaymentStatus({ stripePaymentId, status: 'succeeded' }));
-        if (updatePaymentStatus.fulfilled.match(paymentStatusResult)) {
-          const bookingResults = await dispatch(createBooking(bookingData));
-
-          if (createBooking.fulfilled.match(bookingResults)) {
-            const seatsParam = selectedSeats.map((seat) => `${seat.row}&${seat.seat}&${seat.price}`);
-            const newPath = `/ticket/buy/${movieId}/${scheduleId}/${date}/${hour}/${stageThree}/${seatsParam}/final`;
-            navigate(newPath);
-          } else {
-            console.error('Booking failed:', bookingResults);
-          }
-        } else {
-          console.error(paymentStatusResult.payload);
-        }
+        setPaymentLoading(false);
+        const { clientSecret } = paymentResult.payload;
+        const seatsParam = selectedSeats.map((seat) => `${seat.row}&${seat.seat}&${seat.price}`);
+        const checkoutUrl = `/${movieId}/${scheduleId}/${date}/${hour}/${stageThree}/${seatsParam}/checkout?clientSecret=${clientSecret}`;
+        navigate(checkoutUrl);
       } else {
         console.error(paymentResult.payload);
       }
@@ -196,82 +174,20 @@ function BuyTicketStageThree() {
                   {user && (
                     <div className="buyTicket__stages__payment__personal__content">
                       <p>{user.firstName}</p>
-                      <p>{user.lastName}</p>
                       <p>{user.email}</p>
-                      <p>{user.phone}</p>
                     </div>
                   )}
-                </div>
-              </div>
-              <div className="buyTicket__stages__payment__card">
-                <div className="container">
-                  <div className="buyTicket__stages__payment__card__title">
-                    <h2>Payment Details</h2>
-                  </div>
-                  <div className="buyTicket__stages__payment__card__content">
-                    <div className="buyTicket__stages__payment__card__content__block">
-                      <img src={map} alt="map" />
-                      <div className="card__view">
-                        <p>VISA</p>
-                      </div>
-                      {user && (
-                        <>
-                          <div className="card__number">
-                            <span><FaCircle /></span>
-                            <span><FaCircle /></span>
-                            <span><FaCircle /></span>
-                            <span><FaCircle /></span>
-                            <span><FaCircle /></span>
-                            <span><FaCircle /></span>
-                            <span><FaCircle /></span>
-                            <span><FaCircle /></span>
-                            <span><FaCircle /></span>
-                            <span><FaCircle /></span>
-                            <span><FaCircle /></span>
-                            <span><FaCircle /></span>
-                            <span>{user?.cards[0]?.cardNumber.charAt(12)}</span>
-                            <span>{user?.cards[0]?.cardNumber.charAt(13)}</span>
-                            <span>{user?.cards[0]?.cardNumber.charAt(14)}</span>
-                            <span>{user?.cards[0]?.cardNumber.charAt(15)}</span>
-                          </div>
-                          <div className="card__owner">
-                            <div className="card__owner__name">
-                              <p>{user?.cards[0]?.cardHolderName}</p>
-                            </div>
-                            <div className="card__owner__date">
-                              <p>{user?.cards[0]?.expirationDate.slice(0, 2)}</p>
-                              <span>/</span>
-                              <p>{user?.cards[0]?.expirationDate.slice(2)}</p>
-                            </div>
-                            <div className="card__owner__cvc">
-                              <p>{user?.cards[0]?.cvv}</p>
-                            </div>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
                 </div>
               </div>
               <div className="buyTicket__stages__payment__btn">
                 <div className="container">
                   <div className="buyTicket__stages__payment__btn__block">
-                    <Button onClick={handlePayment}>Next</Button>
+                    <Button onClick={handlePayment}>
+                      {paymentLoading ? (
+                        <ClipLoader color="#fff" className="loading" />
+                      ) : ('Next')}
+                    </Button>
                   </div>
-                  {paymentStatus === 'pending' && (
-                    <div className="buyTicket__loader">
-                      <h1>
-                        Loading
-                        <PulseLoader color="#E8920B" />
-                      </h1>
-                      <RingLoader color="#E8920B" />
-                    </div>
-                  )}
-                  {paymentStatus === 'fail' && paymentError && (
-                    <div className="buyTicket__error">
-                      <p>{paymentError.message || 'An error occurred while processing the payment'}</p>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>

@@ -2,7 +2,6 @@ import signIn from './signIn';
 import register from './register';
 import userData from './userData';
 import singleMovie from './singleMovie';
-import movieList from './movieList';
 import categoryList from './categoryList';
 import countryList from './countryList';
 import scheduleList from './scheduleList';
@@ -16,13 +15,15 @@ import resetPassword from './resetPassword';
 import resetPasswordFinished from './resetPasswordFinished';
 import uploadTicket from './uploadTicket';
 import userUpdate from './userUpdate';
+import filteredMovieList from './filteredMovieList';
+import movieList from './movieList';
 
 const reducers = {
   signIn,
   register,
   userData,
   singleMovie,
-  movieList,
+  filteredMovieList,
   categoryList,
   countryList,
   scheduleList,
@@ -36,5 +37,6 @@ const reducers = {
   resetPasswordFinished,
   uploadTicket,
   userUpdate,
+  movieList,
 };
 export default reducers;

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
-import signInData from '../../assets/data/signInData/signInData';
+import { ClipLoader } from 'react-spinners';
 import { signIn } from '../../store/actions/signIn';
 
 function SignInComp() {
@@ -17,6 +17,7 @@ function SignInComp() {
   const [error, setError] = useState(null);
   const [type, setType] = useState(false);
   const [typeIcon, setTypeIcon] = useState(faEye);
+  const [loading, setLoading] = useState(false);
 
   const handleTypePassword = useCallback(() => {
     setType((prevType) => !prevType);
@@ -43,9 +44,10 @@ function SignInComp() {
         userName,
         password,
       }));
+      setLoading(true);
 
       if (signIn.rejected.match(signInResult)) {
-        console.log(signInResult);
+        setLoading(false);
         if (signInResult.error.message === 'Rejected') {
           setError((prevErrors) => ({
             ...prevErrors,
@@ -64,7 +66,6 @@ function SignInComp() {
       console.log(e);
     }
   }, [dispatch, userName, password]);
-  console.log(error);
   return (
     <div className="signIn">
       <div className="container">
@@ -111,23 +112,11 @@ function SignInComp() {
             <div className="reset">
               <Link to="/reset/password" className="reset__title">Forgot Password?</Link>
             </div>
-            <div>
-              <h2 className="signIn__or">Or</h2>
-            </div>
-            <div className="software__icons">
-              {signInData.map((icon) => (
-                <div key={icon.id} className="software__icons__box">
-                  <Link target="_blank" to={icon.url}>
-                    <img
-                      className="software__icons__img"
-                      src={icon.image}
-                      alt=""
-                    />
-                  </Link>
-                </div>
-              ))}
-            </div>
-            <button type="submit" className="orange__btn">Sign In</button>
+            <button type="submit" className="orange__btn">
+              {loading ? (
+                <ClipLoader color="#fff" className="loading" />
+              ) : ('Sign In')}
+            </button>
           </form>
         </div>
       </div>

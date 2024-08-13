@@ -1,11 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStarOfLife } from '@fortawesome/free-solid-svg-icons';
+import { ClipLoader } from 'react-spinners';
 import FileInput from '../components/SignUpComponents/FileInput';
 import DataInput from '../components/SignUpComponents/DataInput';
 import Wrapper from '../components/commons/Wrapper';
 import { register } from '../store/actions/register';
-import CardInput from '../components/SignUpComponents/CardInput';
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -21,31 +23,32 @@ function SignUp() {
   const [country, setCountry] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('+374');
-  const [cardNumber, setCardNumber] = useState('');
-  const [selectedMonth, setSelectedMonth] = useState('');
-  const [selectedYear, setSelectedYear] = useState('');
-  const [cardHolderName, setCardHolderName] = useState('');
-  const [cvv, setCvv] = useState('');
   const [errors, setErrors] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData();
-    formData.append('photo', photo);
-    formData.append('firstName', firstName);
-    formData.append('lastName', lastName);
-    formData.append('userName', userName);
-    formData.append('email', email);
-    formData.append('password', password);
-    formData.append('city', city);
-    formData.append('country', country);
-    formData.append('address', address);
-    formData.append('phone', phone);
-    formData.append('cardNumber', cardNumber);
-    formData.append('selectedMonth', selectedMonth);
-    formData.append('selectedYear', selectedYear);
-    formData.append('cvv', cvv);
-    formData.append('cardHolderName', cardHolderName);
+    if (phone === '+374' || city === '' || address === '' || country === '') {
+      formData.append('photo', photo);
+      formData.append('firstName', firstName);
+      formData.append('lastName', lastName);
+      formData.append('userName', userName);
+      formData.append('email', email);
+      formData.append('password', password);
+    } else {
+      formData.append('photo', photo);
+      formData.append('firstName', firstName);
+      formData.append('lastName', lastName);
+      formData.append('userName', userName);
+      formData.append('email', email);
+      formData.append('password', password);
+      formData.append('city', city);
+      formData.append('country', country);
+      formData.append('address', address);
+      formData.append('phone', phone);
+    }
     try {
       const newErrors = {};
 
@@ -58,8 +61,10 @@ function SignUp() {
       const signUpResult = await dispatch(register(formData));
 
       if (register.fulfilled.match(signUpResult)) {
+        setLoading(false);
         navigate('/email/verification');
       } else if (signUpResult.error.message === 'Rejected') {
+        setLoading(false);
         const apiErrors = signUpResult.payload.errors;
         setErrors({
           ...apiErrors,
@@ -73,11 +78,7 @@ function SignUp() {
       console.log(e);
     }
   }, [dispatch, photo, firstName, lastName, userName, email,
-    password, city, country, address, phone, cardNumber,
-    selectedMonth,
-    selectedYear,
-    cvv,
-    cardHolderName]);
+    password, city, country, address, phone]);
   return (
     <Wrapper>
       <div className="sign__up">
@@ -88,6 +89,11 @@ function SignUp() {
             </div>
             <div className="sign__up__instruction">
               <p>Fill in all Fields</p>
+              <p>
+                <FontAwesomeIcon icon={faStarOfLife} />
+                -
+                (Required)
+              </p>
             </div>
             <div className="sign__up__form">
               <form id="signUp" onSubmit={handleSubmit}>
@@ -114,21 +120,12 @@ function SignUp() {
                   phone={phone}
                   errors={errors}
                 />
-                <CardInput
-                  cardNumber={cardNumber}
-                  setCardNumber={setCardNumber}
-                  cardHolderName={cardHolderName}
-                  setCardHolderName={setCardHolderName}
-                  selectedMonth={selectedMonth}
-                  selectedYear={selectedYear}
-                  setSelectedMonth={setSelectedMonth}
-                  setSelectedYear={setSelectedYear}
-                  cvv={cvv}
-                  setCvv={setCvv}
-                  errors={errors}
-                />
                 <div className="sign__up__btn">
-                  <button className="orange__btn" type="submit" form="signUp">Done</button>
+                  <button className="orange__btn" type="submit" form="signUp">
+                    {loading ? (
+                      <ClipLoader color="#fff" className="loading" />
+                    ) : ('Done')}
+                  </button>
                 </div>
               </form>
             </div>

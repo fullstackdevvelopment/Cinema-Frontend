@@ -1,22 +1,22 @@
 .filtration {
   width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
   background: #1e1e1e;
-  z-index: 100;
-  height: 200px;
+ padding: 50px 0;
 
   &__block {
-    width: 1200px;
+    width: 100%;
+    height: 100%;
     display: flex;
     border-top: 1px solid #E8920B;
     border-bottom: 1px solid #E8920B;
     padding: 40px 0;
     justify-content: space-between;
-    position: absolute;
     border-radius: 20px;
+    background: #1e1e1e;
 
     &__select {
       display: flex;

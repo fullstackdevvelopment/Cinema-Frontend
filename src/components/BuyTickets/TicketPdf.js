@@ -8,10 +8,12 @@ import html2canvas from 'html2canvas';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import JsBarcode from 'jsbarcode';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast, ToastContainer } from 'react-toastify';
 import moment from 'moment-timezone';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { format, parseISO } from 'date-fns';
+import { ClipLoader } from 'react-spinners';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { uploadTicket } from '../../store/actions/uploadTicket';
 
 function TicketPdf(props) {
@@ -24,6 +26,9 @@ function TicketPdf(props) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const user = useSelector((state) => state.userData.data.user);
   const dispatch = useDispatch();
+  const [downloadLoading, setDownloadLoading] = useState(false);
+  const [sendLoading, setSendLoading] = useState(false);
+  const [sendStatus, setSendStatus] = useState(null);
 
   useEffect(() => {
     const length = 20;
@@ -71,6 +76,7 @@ function TicketPdf(props) {
   }, [photo]);
 
   const generatePdf = () => {
+    setDownloadLoading(true);
     if (!imageLoaded) {
       console.error('Image not loaded yet');
       return;
@@ -86,6 +92,7 @@ function TicketPdf(props) {
       });
       pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
       pdf.save('ticket.pdf');
+      setDownloadLoading(false);
     });
   };
 
@@ -94,6 +101,7 @@ function TicketPdf(props) {
       console.error('Image not loaded yet');
       return;
     }
+    setSendStatus(null);
 
     const canvas = await html2canvas(pdfRef.current);
     const imgData = canvas.toDataURL('image/png');
@@ -107,42 +115,28 @@ function TicketPdf(props) {
 
     const pdfOutput = pdf.output('blob');
 
-    const userConfirmed = window.confirm('Are you sure you want to send a PDF ticket by email?');
-
-    if (!userConfirmed) {
-      return;
-    }
-
     if (pdfOutput) {
+      const userConfirmed = window.confirm('Are you sure you want to send a PDF ticket by email?');
+      if (!userConfirmed) {
+        return;
+      }
+
       const formData = new FormData();
       formData.append('pdf', pdfOutput, 'ticket.pdf');
       formData.append('email', user.email);
 
       try {
+        setSendLoading(true);
         const result = await dispatch(uploadTicket(formData));
+        setSendLoading(false);
+
         if (uploadTicket.fulfilled.match(result)) {
-          toast.success('PDF of the flight has been sent to your email', {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          setSendStatus(true);
         } else {
-          toast.error('Something went wrong, please try again later', {
-            position: 'top-right',
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
+          setSendStatus(false);
         }
-        console.log(result);
       } catch (error) {
+        setSendLoading(false);
         console.error('Error uploading ticket:', error);
       }
     }
@@ -152,7 +146,7 @@ function TicketPdf(props) {
     const dur = moment.duration(minutes, 'minutes');
     const hours = dur.hours();
     const remainingMinutes = dur.minutes();
-    return `${hours}h. ${remainingMinutes}min.`;
+    return remainingMinutes === 0 ? `${hours}h.` : `${hours}h. ${remainingMinutes}min.`;
   };
 
   const formattedDuration = convertDuration(duration);
@@ -207,10 +201,30 @@ function TicketPdf(props) {
         </div>
       </div>
       <div className="ticket__pdf__btn">
-        <button className="ticket__pdf__btn__send" type="submit" onClick={generatePdfEmail}>SEND YOUR EMAIL?</button>
-        <button className="orange__btn" type="submit" onClick={generatePdf}>Download PDF</button>
+        <button className="ticket__pdf__btn__send" type="submit" onClick={generatePdfEmail}>
+          SEND YOUR EMAIL?
+          {sendLoading ? (
+            <ClipLoader color="#fff" className="loading" />
+          ) : ('')}
+        </button>
+        {sendStatus === true ? (
+          <p className="ok__status">
+            <FontAwesomeIcon icon={faCheck} />
+            PDF of the flight has been sent to your email
+          </p>
+        ) : null}
+        {sendStatus === false ? (
+          <p className="error__status">
+            <FontAwesomeIcon icon={faXmark} />
+            Something went wrong, please try again later
+          </p>
+        ) : null}
+        <button className="orange__btn" type="submit" onClick={generatePdf}>
+          {downloadLoading ? (
+            <ClipLoader color="#fff" className="loading" />
+          ) : ('Download PDF')}
+        </button>
       </div>
-      <ToastContainer />
     </div>
   );
 }

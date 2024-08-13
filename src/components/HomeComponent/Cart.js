@@ -14,20 +14,21 @@ function Cart(props) {
   return (
     <div onClick={handleClick} className="cinema__home__latest__cart">
       <div className="cinema__home__latest__cart__item">
-        <img src={`http://localhost:4000/${moviePhoto}`} alt="movie" className="cinema__home__latest__cart__item__img" />
+        <img loading="lazy" src={`http://localhost:4000/${moviePhoto}`} alt="movie" className="cinema__home__latest__cart__item__img" />
         <div className="cinema__home__latest__cart__item__group">
           <span className="cinema__home__latest__cart__item__group__title">
             {title}
           </span>
-          <Stars rating={rating} />
-        </div>
-        <div className="cinema__home__latest__cart__item__dec">
-          <p className="cinema__home__latest__cart__item__group__title">
-            {`${voters} Voters`}
-          </p>
+          <div className="cinema__home__latest__cart__item__dec">
+            <Stars rating={rating} />
+            <p className="cinema__home__latest__cart__item__group__p">
+              {`${voters} Voters`}
+            </p>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
 export default Cart;

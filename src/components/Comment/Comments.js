@@ -50,15 +50,6 @@ function Comments(props) {
     setRating(newRating);
   }, []);
 
-  const getSlidesToShow = (commentsCount) => {
-    if (commentsCount === 1) {
-      return 1;
-    } if (commentsCount === 2) {
-      return 2;
-    }
-    return 3;
-  };
-
   return (
     <>
       <div className="comments">
@@ -68,8 +59,7 @@ function Comments(props) {
             <Carousel
               cellSpacing={20}
               dragging
-              slidesToShow={getSlidesToShow(movieComments?.length)}
-              wrapAround
+              slidesToShow={3}
               speed={400}
               slidesToScroll={1}
               renderBottomCenterControls={null}

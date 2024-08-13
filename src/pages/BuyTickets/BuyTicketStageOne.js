@@ -82,7 +82,6 @@ function BuyTicketStageOne() {
   };
 
   const stageClassName = stage === 1 ? 'buyTicket__stages__header__block__tickets active' : 'buyTicket__stages__header__block__tickets';
-
   return (
     <Wrapper>
       <div className="buyTicket">
@@ -168,42 +167,54 @@ function BuyTicketStageOne() {
                           Schedule
                         </p>
                       </div>
-                      <div className="buyTicket__block__schedule__main">
-                        <div className="buyTicket__block__schedule__main__block">
-                          <p>{'Dates: '}</p>
-                          <div className="buyTicket__block__schedule__main__block__time">
-                            <div className="buyTicket__block__schedule__main__block__time__content">
-                              <span>{'Hours: '}</span>
-                            </div>
-                          </div>
-                        </div>
-                        {filteredSchedule.map((item) => (
-                          <div key={item.id} className="buyTicket__block__schedule__main__block">
-                            <p>{item.date}</p>
+                      {filteredSchedule.length > 0 ? (
+                        <div className="buyTicket__block__schedule__main">
+                          <div className="buyTicket__block__schedule__main__block">
+                            <p>{'Dates: '}</p>
                             <div className="buyTicket__block__schedule__main__block__time">
-                              {item.schedules[0].times.map((time) => (
-                                <div
-                                  key={_.uniqueId(`${item.id}-${time}`)}
-                                  className="buyTicket__block__schedule__main__block__time__content"
-                                >
-                                  <span>
-                                    {moment.utc(`${item.date}T${time}`)
-                                      .tz('Asia/Yerevan')
-                                      .format('HH:mm')}
-                                  </span>
-                                  <Checkbox
-                                    /* eslint-disable-next-line react/jsx-props-no-spreading */
-                                    {...label}
-                                    checked={selectedTime === moment.utc(`${item.date}T${time}`).tz('Asia/Yerevan').format('HH:mm') && selectedDate === item.date}
-                                    onChange={() => handleCheckboxChange(item.date, time)}
-                                    disabled={selectedTime !== null && (selectedTime !== moment.utc(`${item.date}T${time}`).tz('Asia/Yerevan').format('HH:mm') || selectedDate !== item.date)}
-                                  />
-                                </div>
-                              ))}
+                              <div
+                                className="buyTicket__block__schedule__main__block__time__content"
+                              >
+                                <span>{'Hours: '}</span>
+                              </div>
                             </div>
                           </div>
-                        ))}
-                      </div>
+                          {filteredSchedule.map((item) => (
+                            <div key={item.id} className="buyTicket__block__schedule__main__block">
+                              <p>{item.date}</p>
+                              <div className="buyTicket__block__schedule__main__block__time">
+                                {item.schedules[0].times.map((time) => (
+                                  <div
+                                    key={_.uniqueId(`${item.id}-${time}`)}
+                                    className="buyTicket__block__schedule__main__block__time__content"
+                                  >
+                                    <span>
+                                      {moment.utc(`${item.date}T${time}`)
+                                        .tz('Asia/Yerevan')
+                                        .format('HH:mm')}
+                                    </span>
+                                    <Checkbox
+                                      /* eslint-disable-next-line react/jsx-props-no-spreading */
+                                      {...label}
+                                      checked={selectedTime === moment.utc(`${item.date}T${time}`)
+                                        .tz('Asia/Yerevan')
+                                        .format('HH:mm') && selectedDate === item.date}
+                                      onChange={() => handleCheckboxChange(item.date, time)}
+                                      disabled={selectedTime !== null && (selectedTime !== moment.utc(`${item.date}T${time}`)
+                                        .tz('Asia/Yerevan')
+                                        .format('HH:mm') || selectedDate !== item.date)}
+                                    />
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="buyTicket__block__schedule__main">
+                          <p>No Schedule</p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

@@ -5,7 +5,12 @@
   justify-content: center;
   background-color: #1e1e1e;
   position: relative;
-  margin-bottom: -82px;
+  margin-bottom: 50px;
+
+  & .slide {
+      padding: 0 !important;
+      margin: 0 !important;
+  }
 }
 
 .carousel__block {
@@ -50,6 +55,10 @@
 
       & .MuiRating-root.MuiRating-sizeLarge.Mui-readOnly.MuiRating-readOnly.css-16eup4j-MuiRating-root {
         margin-bottom: 10px;
+
+        & .MuiRating-icon.MuiRating-iconEmpty.css-1c99szj-MuiRating-icon {
+          color: #e8920b;
+        }
       }
 
       &__voters {
@@ -197,7 +206,7 @@
 }
 
 .film.carousel__button.left {
-  left: 0;
+  left: -20px;
   background: none;
   border-radius: 1px;
   width: 36px;
@@ -205,7 +214,7 @@
 }
 
 .film.carousel__button.right {
-  left: 0;
+  left: 20px;
   background: none;
   border-radius: 1px;
   width: 36px;

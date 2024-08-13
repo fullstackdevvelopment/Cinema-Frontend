@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { ClipLoader } from 'react-spinners';
 import { resetPassword } from '../../store/actions/resetPassword';
 
 function ResetPassword() {
@@ -9,12 +10,16 @@ function ResetPassword() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState(null);
   const [stage, setStage] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = useCallback(async () => {
     const result = await dispatch(resetPassword({ email }));
+    setLoading(true);
     if (resetPassword.fulfilled.match(result)) {
+      setLoading(false);
       setStage(true);
     } else if (result.error.message === 'Rejected') {
+      setLoading(true);
       setStatus({
         error: result.payload.errors.email,
       });
@@ -55,7 +60,9 @@ function ResetPassword() {
               ) : null}
             </div>
             <button onClick={handleSubmit} type="submit" className="orange__btn">
-              Reset Password
+              {loading ? (
+                <ClipLoader color="#fff" className="loading" />
+              ) : ('Reset Password')}
             </button>
           </div>
         </div>

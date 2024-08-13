@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { ToastContainer, toast } from 'react-toastify';
+import { ClipLoader } from 'react-spinners';
 import Wrapper from '../components/commons/Wrapper';
 import ContactInfo from '../components/ContactComponents/ContactInfo';
 import facebook from '../assets/images/contactIcons/facebook.png';
@@ -29,6 +30,8 @@ function Contact() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (token) {
       dispatch(userData(token));
@@ -37,12 +40,14 @@ function Contact() {
 
   const handleSend = useCallback(async () => {
     try {
+      setLoading(true);
       const data = {
         email: email || user?.email,
         message,
       };
       const sendMessageResult = await dispatch(sendMessage(data));
       if (sendMessage.fulfilled.match(sendMessageResult)) {
+        setLoading(false);
         toast.success('Your message has been sent successfully', {
           position: 'top-right',
           autoClose: 3000,
@@ -104,7 +109,9 @@ function Contact() {
               className="orange__btn contact__btn"
               onClick={handleSend}
             >
-              Send Message
+              {loading ? (
+                <ClipLoader color="#fff" className="loading" />
+              ) : ('Send Message')}
             </button>
             <h2 className="connect">Connect with us!</h2>
             <div className="contact__icons">

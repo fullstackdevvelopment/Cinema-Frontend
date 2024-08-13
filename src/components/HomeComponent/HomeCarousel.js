@@ -8,13 +8,14 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { movieList } from '../../store/actions/movieList';
+import imgError from '../../assets/images/userError.webp';
 
 function HomeCarousel() {
   const dispatch = useDispatch();
-  const list = useSelector((state) => state.movieList.list);
+  const list = useSelector((state) => state.movieList.list.allMovies);
 
   useEffect(() => {
-    dispatch(movieList({ page: 1, limit: 6 }));
+    dispatch(movieList());
   }, [dispatch]);
 
   const handleKeyDown = useCallback((e) => {
@@ -86,6 +87,10 @@ function HomeCarousel() {
                               key={actor.id}
                               src={`http://localhost:4000/${actor.photo}`}
                               alt={`actor${actor.id}`}
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = imgError;
+                              }}
                             />
                           ))}
                         <div className="accordion__block__length">
@@ -99,6 +104,10 @@ function HomeCarousel() {
                               key={actor.id}
                               src={`http://localhost:4000/${actor.photo}`}
                               alt={`actor${actor.id}`}
+                              onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = imgError;
+                              }}
                             />
                           ))}
                       </AccordionDetails>

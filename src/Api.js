@@ -31,12 +31,23 @@ class Api {
     return api.get(`/movie/single/${movieId}`);
   }
 
-  static movieList(page = 1, limit = 6) {
-    return api.get(`/movie/list?page=${page}&limit=${limit}`);
+  static filteredMovieList({
+    page = 1, limit = 6, title = '', categoryIds = [], countries = [], years = [],
+  }) {
+    const categoryIdsParam = categoryIds.length > 0 ? `&categoryIds=${categoryIds.join(',')}` : '';
+    const countriesParam = countries.length > 0 ? `&countries=${countries.join(',')}` : '';
+    const yearsParam = years.length > 0 ? `&years=${years.join(',')}` : '';
+    const titleParam = title.length > 0 ? `&title=${encodeURIComponent(title)}` : '';
+
+    return api.get(`/movie/list/filtered?page=${page}&limit=${limit}${titleParam}${categoryIdsParam}${countriesParam}${yearsParam}`);
   }
 
   static categoryList() {
     return api.get('/category/list');
+  }
+
+  static movieList() {
+    return api.get('/movie/list');
   }
 
   static countryList() {

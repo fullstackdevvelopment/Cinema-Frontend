@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { toast, ToastContainer } from 'react-toastify';
+import { ClipLoader } from 'react-spinners';
 import Wrapper from '../components/commons/Wrapper';
 import { resetPasswordFinished } from '../store/actions/resetPasswordFinished';
 
@@ -19,11 +20,14 @@ function ResetPassword() {
   const [typeIcon, setTypeIcon] = useState(faEye);
   const [typeTwo, setTypeTwo] = useState(false);
   const [typeIconTwo, setTypeIconTwo] = useState(faEye);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = useCallback(async () => {
     if (repeatPassword === password) {
       const result = await dispatch(resetPasswordFinished({ verificationCode, password }));
+      setLoading(true);
       if (resetPasswordFinished.fulfilled.match(result)) {
+        setLoading(false);
         toast.success('Your password has been successfully changed', {
           position: 'top-right',
           autoClose: 3000,
@@ -37,6 +41,7 @@ function ResetPassword() {
           navigate('/signIn');
         }, 3000);
       } else if (result.error.message === 'Rejected') {
+        setLoading(true);
         setStatus({
           error: result.payload.errors.password,
         });
@@ -102,7 +107,11 @@ function ResetPassword() {
                   {repeatPasswordStatus.error}
                 </span>
               ) : null}
-              <button className="orange__btn" onClick={handleSubmit} type="submit">Send</button>
+              <button className="orange__btn" onClick={handleSubmit} type="submit">
+                {loading ? (
+                  <ClipLoader color="#fff" className="loading" />
+                ) : ('Change Password')}
+              </button>
             </div>
           </div>
         </div>

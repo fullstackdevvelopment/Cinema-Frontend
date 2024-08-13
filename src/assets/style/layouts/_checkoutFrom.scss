@@ -1,0 +1,185 @@
+.checkout__form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  overflow: hidden;
+  padding: 50px;
+
+  & .error__payment {
+    padding: 10px 0;
+    background: #fff;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & span {
+      color: #cd3d64;
+      font-size: 20px;
+      font-weight: 500;
+      font-variant: all-petite-caps;
+    }
+  }
+
+  & button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .loading {
+      color: #fff;
+      & span:nth-child(1) {
+
+      }
+    }
+  }
+
+  button:disabled {
+    background: #ccc;
+  }
+
+  &__success {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    overflow: hidden;
+    padding: 200px;
+
+    & img {
+      width: 30%;
+      object-fit: cover;
+    }
+  }
+
+  &__block {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    display: flex;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+
+    &__title {
+      color: #000;
+      font-weight: bold;
+      font-variant: all-petite-caps;
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    &__text {
+      color: #000;
+      font-weight: 400;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    &__link {
+      color: #000;
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    & svg {
+      color: #3fd9b2;
+      font-size: 50px;
+    }
+  }
+
+  &__test {
+    background: #ffde92;
+    color: #bb5504;
+    padding: 4px 6px;
+    border-radius: 6px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  & img {
+    width: 30%;
+    object-fit: cover;
+  }
+
+  &__desc {
+    color: #1158a5;
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-variant: all-petite-caps;
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+  }
+
+  & input {
+    color: #007bff;
+    font-weight: bold;
+    &::placeholder {
+      font-weight: 500;
+      color: #1158a5;
+    }
+  }
+
+  & label {
+    color: #000;
+    font-weight: bold;
+  }
+}
+
+.MuiFormControl-root.MuiFormControl-marginNormal.MuiFormControl-fullWidth.MuiTextField-root.css-17vbkzs-MuiFormControl-root-MuiTextField-root {
+  & .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+    color: #1158a5;
+  }
+
+  & .MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border: 2px solid #007bff;
+  }
+}
+
+.StripeElement {
+  width: 100%;
+  padding: 10px;
+  background: #f5f5f5;
+  border: 2px solid #007bff;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.card-element {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.MuiFormControl-root.MuiFormControl-marginNormal.MuiFormControl-fullWidth.MuiTextField-root.css-17vbkzs-MuiFormControl-root-MuiTextField-root {
+  margin: 0 0 10px 0;
+}
+
+.ElementsApp, .ElementsApp .InputElement {
+  color: #007bff !important;
+}
+
+.InputElement.is-empty.Input.Input--empty {
+  color: #007bff !important;
+}
+
+.InputElement.is-complete.Input {
+  color: #007bff !important;
+}

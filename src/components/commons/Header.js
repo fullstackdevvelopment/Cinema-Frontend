@@ -151,7 +151,6 @@ function Header() {
                   <div>
                     <p>{`${user?.firstName} ${user?.lastName}`}</p>
                     <p>{user?.email}</p>
-                    <p>{`Balance: $${user?.cards[0]?.balance}`}</p>
                   </div>
                 </MenuItem>,
                 <MenuItem key="settings" onClick={handleSettings}>

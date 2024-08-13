@@ -44,7 +44,7 @@ function ScheduleItem(props) {
     const dur = moment.duration(minutes, 'minutes');
     const hours = dur.hours();
     const remainingMinutes = dur.minutes();
-    return `${hours}h. ${remainingMinutes}min.`;
+    return remainingMinutes === 0 ? `${hours}h.` : `${hours}h. ${remainingMinutes}min.`;
   };
 
   const formattedDuration = convertDuration(duration);

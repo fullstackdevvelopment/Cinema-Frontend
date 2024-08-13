@@ -178,6 +178,10 @@
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
+
+    & .MuiRating-icon.MuiRating-iconEmpty.css-1c99szj-MuiRating-icon {
+      color: #e8920b;
+    }
   }
 
   &__page {

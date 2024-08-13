@@ -1,9 +1,12 @@
 import React from 'react';
-import { FaRegCopyright } from 'react-icons/fa';
-import { LiaPhoneVolumeSolid } from 'react-icons/lia';
-import { CiLocationOn } from 'react-icons/ci';
-import { TfiEmail } from 'react-icons/tfi';
 import { Link, NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCopyright,
+  faEnvelope,
+  faLocationDot,
+  faPhoneVolume,
+} from '@fortawesome/free-solid-svg-icons';
 import googlePlay from '../../assets/images/icons/google-play.webp';
 import appStore from '../../assets/images/icons/app-store.webp';
 import instagram from '../../assets/images/icons/instagram.webp';
@@ -43,7 +46,7 @@ function Footer() {
               <div className="footer__contact__link">
                 <h3>Contact Us</h3>
                 <div className="footer__contact__link__content">
-                  <CiLocationOn />
+                  <FontAwesomeIcon icon={faLocationDot} />
                   <NavLink
                     to="https://www.google.com/maps/search/?api=1&query=Techno-Educational Academy"
                     target="_blank"
@@ -53,12 +56,12 @@ function Footer() {
                   </NavLink>
                 </div>
                 <div className="footer__contact__link__content">
-                  <LiaPhoneVolumeSolid />
+                  <FontAwesomeIcon icon={faPhoneVolume} />
                   <NavLink to="tel:+37494558806">+37494558806</NavLink>
                   <NavLink to="tel:031265563">031265563</NavLink>
                 </div>
                 <div className="footer__contact__link__content">
-                  <TfiEmail />
+                  <FontAwesomeIcon icon={faEnvelope} />
                   <NavLink to="mailto:Fmovie.cineam@gmail.com">Fmovie.cineam@gmail.com</NavLink>
                 </div>
               </div>
@@ -68,7 +71,7 @@ function Footer() {
         <div className="footer__block">
           <div className="footer__copy">
             <p>Copyright</p>
-            <FaRegCopyright />
+            <FontAwesomeIcon icon={faCopyright} />
             <p>2023Fmovie. Cinema</p>
           </div>
           <div className="footer__menu__icon">

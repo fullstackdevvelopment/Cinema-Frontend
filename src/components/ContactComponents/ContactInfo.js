@@ -1,8 +1,7 @@
 import React from 'react';
-import { CiLocationOn } from 'react-icons/ci';
-import { LiaPhoneVolumeSolid } from 'react-icons/lia';
-import { TfiEmail } from 'react-icons/tfi';
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope, faLocationDot, faPhoneVolume } from '@fortawesome/free-solid-svg-icons';
 
 function ContactInfo() {
   return (
@@ -11,7 +10,7 @@ function ContactInfo() {
       <div className="contact__info">
         <div className="contact__info__item">
           <figure>
-            <LiaPhoneVolumeSolid />
+            <FontAwesomeIcon icon={faPhoneVolume} />
           </figure>
           <h2 className="contact__info__item__title">Phone</h2>
           <NavLink to="tel:+37494558806">+37494558806</NavLink>
@@ -19,7 +18,7 @@ function ContactInfo() {
         </div>
         <div className="contact__info__item">
           <figure>
-            <CiLocationOn />
+            <FontAwesomeIcon icon={faLocationDot} />
           </figure>
           <h2 className="contact__info__item__title">Address</h2>
           <NavLink
@@ -33,7 +32,7 @@ function ContactInfo() {
         </div>
         <div className="contact__info__item">
           <figure>
-            <TfiEmail />
+            <FontAwesomeIcon icon={faEnvelope} />
           </figure>
           <h2 className="contact__info__item__title">Email</h2>
           <NavLink to="mailto:Fmovie.cineam@gmail.com">Fmovie.cineam@gmail.com</NavLink>
