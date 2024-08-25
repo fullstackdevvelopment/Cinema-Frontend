@@ -88,7 +88,12 @@ function Film() {
                 </div>
               </figure>
               <div className="film__box__movie">
-                <video controls width="700">
+                <video
+                  poster={`http://localhost:4000/${singleData?.stills[0]?.stillPath}`}
+                  controls
+                  width="700"
+                  loop
+                >
                   <track kind="captions" />
                   <source
                     className="film__box__movie__video"
@@ -117,7 +122,7 @@ function Film() {
                       </span>
                     )}
                   >
-                    {singleData?.stills?.map((s) => (
+                    {singleData?.stills?.slice(1).map((s) => (
                       <div key={s.id} className="film__box__movie__shots__block">
                         <figure className="film__box__movie__shots__item">
                           <img src={`http://localhost:4000/${s.stillPath}`} alt="shot" />

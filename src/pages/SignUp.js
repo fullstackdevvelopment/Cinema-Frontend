@@ -32,25 +32,16 @@ function SignUp() {
     setLoading(true);
     const newErrors = {};
     const formData = new FormData();
-    if (phone === '+374' || city === '' || address === '' || country === '') {
-      formData.append('photo', photo);
-      formData.append('firstName', firstName);
-      formData.append('lastName', lastName);
-      formData.append('userName', userName);
-      formData.append('email', email);
-      formData.append('password', password);
-    } else {
-      formData.append('photo', photo);
-      formData.append('firstName', firstName);
-      formData.append('lastName', lastName);
-      formData.append('userName', userName);
-      formData.append('email', email);
-      formData.append('password', password);
-      formData.append('city', city);
-      formData.append('country', country);
-      formData.append('address', address);
-      formData.append('phone', phone);
-    }
+    formData.append('photo', photo);
+    formData.append('firstName', firstName);
+    formData.append('lastName', lastName);
+    formData.append('userName', userName);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('city', city);
+    formData.append('country', country);
+    formData.append('address', address);
+    formData.append('phone', phone);
     try {
       if (repeatPassword !== password) {
         newErrors.repeatPassword = 'Password mismatch';

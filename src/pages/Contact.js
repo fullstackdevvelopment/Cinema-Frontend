@@ -46,9 +46,7 @@ function Contact() {
         data.email = email;
         data.message = message;
       }
-      console.log(data);
       const sendMessageResult = await dispatch(sendMessage({ data }));
-      console.log(sendMessageResult);
       if (sendMessage.fulfilled.match(sendMessageResult)) {
         setLoading(false);
         toast.success('Your message has been sent successfully', {
@@ -64,7 +62,6 @@ function Contact() {
         setEmail('');
       } else {
         setLoading(false);
-        console.log(sendMessageResult);
         setError({
           error: sendMessageResult.payload.errors.message || sendMessageResult.payload.errors.email,
         });

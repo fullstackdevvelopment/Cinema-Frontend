@@ -856,6 +856,10 @@
           align-items: center;
           margin-bottom: 20px;
 
+          & .MuiRating-icon.MuiRating-iconEmpty.css-1c99szj-MuiRating-icon {
+            color: #e8920b;
+          }
+
           & h2 {
             color: #fff;
             font-size: 42px;
