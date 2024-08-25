@@ -61,5 +61,7 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'max-len': 'off',
+    'no-alert': 0,
+    'react/require-default-props': 'off',
   },
 };

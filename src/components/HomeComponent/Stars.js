@@ -1,5 +1,6 @@
 import React from 'react';
 import Rating from '@mui/material/Rating';
+import PropTypes from 'prop-types';
 
 function Stars(props) {
   const { rating } = props;
@@ -16,3 +17,7 @@ function Stars(props) {
 }
 
 export default Stars;
+
+Stars.propTypes = {
+  rating: PropTypes.number.isRequired,
+};

@@ -1,6 +1,6 @@
 import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import moment from 'moment-timezone';
+import PropTypes from 'prop-types';
 
 function ScheduleItem(props) {
   const {
@@ -8,7 +8,6 @@ function ScheduleItem(props) {
   } = props;
   const armenianTimeZone = 'Asia/Yerevan';
   const currentDates = moment().format('YYYY-MM-DD');
-
   const formattedTimes = times.map((time) => {
     const dateTimeString = `${currentDates}T${time}`;
     return moment.utc(dateTimeString).tz(armenianTimeZone).format('HH:mm');
@@ -82,3 +81,11 @@ function ScheduleItem(props) {
 }
 
 export default ScheduleItem;
+
+ScheduleItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  duration: PropTypes.string.isRequired,
+  moviePhoto: PropTypes.string.isRequired,
+  times: PropTypes.arrayOf(PropTypes.string).isRequired,
+  dates: PropTypes.string.isRequired,
+};

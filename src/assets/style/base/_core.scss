@@ -2,14 +2,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
+  font-family: $font;
 }
 
 html{
   scroll-behavior: smooth;
   background: #000;
 }
-
 
 body {
   font-size: 16px;
@@ -22,7 +21,6 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 }
-
 
 .container {
   width: 100%;

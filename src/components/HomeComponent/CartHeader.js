@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function CartHeader(props) {
   const { name } = props;
@@ -15,3 +16,7 @@ function CartHeader(props) {
 }
 
 export default CartHeader;
+
+CartHeader.propTypes = {
+  name: PropTypes.string.isRequired,
+};

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStarOfLife } from '@fortawesome/free-solid-svg-icons';
 import { ClipLoader } from 'react-spinners';
+import { toast, ToastContainer } from 'react-toastify';
 import FileInput from '../components/SignUpComponents/FileInput';
 import DataInput from '../components/SignUpComponents/DataInput';
 import Wrapper from '../components/commons/Wrapper';
@@ -29,6 +30,7 @@ function SignUp() {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     setLoading(true);
+    const newErrors = {};
     const formData = new FormData();
     if (phone === '+374' || city === '' || address === '' || country === '') {
       formData.append('photo', photo);
@@ -50,16 +52,13 @@ function SignUp() {
       formData.append('phone', phone);
     }
     try {
-      const newErrors = {};
-
       if (repeatPassword !== password) {
         newErrors.repeatPassword = 'Password mismatch';
       }
       if (photo === null) {
         newErrors.photo = 'Add Photo';
       }
-      const signUpResult = await dispatch(register(formData));
-
+      const signUpResult = await dispatch(register({ formData }));
       if (register.fulfilled.match(signUpResult)) {
         setLoading(false);
         navigate('/email/verification');
@@ -71,14 +70,24 @@ function SignUp() {
           ...newErrors,
         });
       } else {
+        setLoading(false);
         setErrors(newErrors);
       }
       // eslint-disable-next-line no-shadow
     } catch (e) {
-      console.log(e);
+      setLoading(false);
+      toast.error(e, {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
-  }, [dispatch, photo, firstName, lastName, userName, email,
-    password, city, country, address, phone]);
+  }, [dispatch, repeatPassword, photo, firstName, lastName, userName, email,
+    password, city, country, address, phone, navigate]);
   return (
     <Wrapper>
       <div className="sign__up">
@@ -132,6 +141,7 @@ function SignUp() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </Wrapper>
   );
 }

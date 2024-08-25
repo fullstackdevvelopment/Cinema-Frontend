@@ -1,19 +1,16 @@
 import React, {
   useCallback, useEffect, useRef, useState,
 } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { jsPDF } from 'jspdf';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import html2canvas from 'html2canvas';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import JsBarcode from 'jsbarcode';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment-timezone';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { format, parseISO } from 'date-fns';
 import { ClipLoader } from 'react-spinners';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 import { uploadTicket } from '../../store/actions/uploadTicket';
 
 function TicketPdf(props) {
@@ -230,3 +227,14 @@ function TicketPdf(props) {
 }
 
 export default TicketPdf;
+
+TicketPdf.propTypes = {
+  photo: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  duration: PropTypes.string.isRequired,
+  dateString: PropTypes.string.isRequired,
+  hour: PropTypes.string.isRequired,
+  row: PropTypes.string.isRequired,
+  seat: PropTypes.string.isRequired,
+};

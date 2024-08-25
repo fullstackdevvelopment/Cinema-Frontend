@@ -6,6 +6,7 @@ import {
   faEyeSlash, faStarOfLife,
   faTriangleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
 function DataInput(props) {
   const {
@@ -31,7 +32,7 @@ function DataInput(props) {
     phone,
     errors,
   } = props;
-
+  console.log(errors);
   const [type, setType] = useState(false);
   const [typeIcon, setTypeIcon] = useState(faEye);
   const [typeTwo, setTypeTwo] = useState(false);
@@ -186,3 +187,38 @@ function DataInput(props) {
 }
 
 export default DataInput;
+
+DataInput.propTypes = {
+  setFirstName: PropTypes.func.isRequired,
+  setLastName: PropTypes.func.isRequired,
+  setUserName: PropTypes.func.isRequired,
+  setEmail: PropTypes.func.isRequired,
+  setPassword: PropTypes.func.isRequired,
+  setRepeatPassword: PropTypes.func.isRequired,
+  setCity: PropTypes.func.isRequired,
+  setCountry: PropTypes.func.isRequired,
+  setAddress: PropTypes.func.isRequired,
+  setPhone: PropTypes.func.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  repeatPassword: PropTypes.string,
+  city: PropTypes.string,
+  country: PropTypes.string,
+  address: PropTypes.string,
+  phone: PropTypes.string,
+  errors: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    userName: PropTypes.string,
+    email: PropTypes.string,
+    password: PropTypes.string,
+    repeatPassword: PropTypes.string,
+    city: PropTypes.string,
+    country: PropTypes.string,
+    address: PropTypes.string,
+    phone: PropTypes.string,
+  }),
+};

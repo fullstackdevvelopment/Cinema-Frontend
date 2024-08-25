@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Carousel from 'nuka-carousel';
 import { Alert, Button, Snackbar } from '@mui/material';
 import Rating from '@mui/material/Rating';
+import PropTypes from 'prop-types';
 import CommentsBlock from './CommentsBlock';
 import { reviewList } from '../../store/actions/reviewList';
 import { createReview } from '../../store/actions/createReview';
@@ -18,6 +19,7 @@ function Comments(props) {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
+  const token = sessionStorage.getItem('token');
 
   useEffect(() => {
     dispatch(reviewList(movieId));
@@ -37,6 +39,10 @@ function Comments(props) {
         setRatingKey(Date.now());
         setSnackbarMessage('Thanks for your comment');
         setSnackbarSeverity('success');
+      } else {
+        console.log(createReviewResult.payload.errors.commentText);
+        setSnackbarMessage(createReviewResult.payload.errors.commentText || 'Something went wrong');
+        setSnackbarSeverity('error');
       }
     } catch (e) {
       setSnackbarMessage(e.message || 'Something went wrong');
@@ -87,36 +93,38 @@ function Comments(props) {
               ))}
             </Carousel>
           </div>
-          <div className="comments__create">
-            <h2 className="comments__create__title">Write your comment about the film</h2>
-            <div className="comments__create__textarea">
-              <textarea
-                name="Your Commnet"
-                id="User Commnet"
-                cols="30"
-                rows="5"
-                value={commentText}
-                onChange={(e) => setCommentText(e.target.value)}
-                placeholder="Your Comment"
-              />
-            </div>
-            <div className="comments__create__btn">
-              <div className="comments__create__rating">
-                <h2 className="comments__create__rating__title">Select Rating</h2>
-                <Rating
-                  key={ratingKey}
-                  className="rating"
-                  onChange={handleRatingChange}
-                  name="simple-controlled"
-                  value={rating || 0}
-                  precision={0.5}
-                  size="small"
-                  sx={{ color: '#e8920b' }}
+          {token ? (
+            <div className="comments__create">
+              <h2 className="comments__create__title">Write your comment about the film</h2>
+              <div className="comments__create__textarea">
+                <textarea
+                  name="Your Commnet"
+                  id="User Commnet"
+                  cols="30"
+                  rows="5"
+                  value={commentText}
+                  onChange={(e) => setCommentText(e.target.value)}
+                  placeholder="Your Comment"
                 />
               </div>
-              <Button onClick={handleCreateComment} className="orange__btn">SEND</Button>
+              <div className="comments__create__btn">
+                <div className="comments__create__rating">
+                  <h2 className="comments__create__rating__title">Select Rating</h2>
+                  <Rating
+                    key={ratingKey}
+                    className="rating"
+                    onChange={handleRatingChange}
+                    name="simple-controlled"
+                    value={rating || 0}
+                    precision={0.5}
+                    size="small"
+                    sx={{ color: '#e8920b' }}
+                  />
+                </div>
+                <Button onClick={handleCreateComment} className="orange__btn">SEND</Button>
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </div>
       <Snackbar
@@ -138,3 +146,7 @@ function Comments(props) {
 }
 
 export default Comments;
+
+Comments.propTypes = {
+  movieId: PropTypes.string.isRequired,
+};

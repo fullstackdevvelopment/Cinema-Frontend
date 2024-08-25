@@ -1,19 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { ToastContainer, toast } from 'react-toastify';
 import { ClipLoader } from 'react-spinners';
 import Wrapper from '../components/commons/Wrapper';
 import ContactInfo from '../components/ContactComponents/ContactInfo';
 import facebook from '../assets/images/contactIcons/facebook.png';
 import instagram from '../assets/images/contactIcons/instagram.png';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import twitter from '../assets/images/contactIcons/twitter.png';
 import google from '../assets/images/contactIcons/google.png';
 import { userData } from '../store/actions/userData';
 import { sendMessage } from '../store/actions/sendMessage';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import 'react-toastify/dist/ReactToastify.css';
 
 const contactIcons = [
@@ -41,11 +38,17 @@ function Contact() {
   const handleSend = useCallback(async () => {
     try {
       setLoading(true);
-      const data = {
-        email: email || user?.email,
-        message,
-      };
-      const sendMessageResult = await dispatch(sendMessage(data));
+      const data = {};
+      if (user?.email) {
+        data.email = user.email;
+        data.message = message;
+      } else {
+        data.email = email;
+        data.message = message;
+      }
+      console.log(data);
+      const sendMessageResult = await dispatch(sendMessage({ data }));
+      console.log(sendMessageResult);
       if (sendMessage.fulfilled.match(sendMessageResult)) {
         setLoading(false);
         toast.success('Your message has been sent successfully', {
@@ -60,8 +63,10 @@ function Contact() {
         setMessage('');
         setEmail('');
       } else {
+        setLoading(false);
+        console.log(sendMessageResult);
         setError({
-          error: sendMessageResult.payload.errors.message,
+          error: sendMessageResult.payload.errors.message || sendMessageResult.payload.errors.email,
         });
         toast.error('Message was not sent', {
           position: 'top-right',

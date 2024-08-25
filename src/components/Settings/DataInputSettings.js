@@ -6,6 +6,7 @@ import {
   faTriangleExclamation,
 } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '@mui/material';
+import PropTypes from 'prop-types';
 
 function DataInputSettings(props) {
   const {
@@ -236,3 +237,38 @@ function DataInputSettings(props) {
 }
 
 export default DataInputSettings;
+
+DataInputSettings.propTypes = {
+  setFirstName: PropTypes.func.isRequired,
+  setLastName: PropTypes.func.isRequired,
+  setEmail: PropTypes.func.isRequired,
+  setCity: PropTypes.func.isRequired,
+  setCountry: PropTypes.func.isRequired,
+  setAddress: PropTypes.func.isRequired,
+  setPhone: PropTypes.func.isRequired,
+  setCurrentPassword: PropTypes.func.isRequired,
+  setNewPassword: PropTypes.func.isRequired,
+  setRepeatNewPassword: PropTypes.func.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  currentPassword: PropTypes.string.isRequired,
+  newPassword: PropTypes.string.isRequired,
+  repeatNewPassword: PropTypes.string,
+  errors: PropTypes.shape({
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string,
+    city: PropTypes.string,
+    country: PropTypes.string,
+    address: PropTypes.string,
+    phone: PropTypes.string,
+    currentPassword: PropTypes.string,
+    newPassword: PropTypes.string,
+    repeatNewPassword: PropTypes.string,
+  }),
+};

@@ -1,15 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { PulseLoader, RingLoader } from 'react-spinners';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import NukaCarousel from 'nuka-carousel';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { easeQuadInOut, easeQuadOut } from 'd3-ease';
 import Stars from '../components/HomeComponent/Stars';
 import Wrapper from '../components/commons/Wrapper';

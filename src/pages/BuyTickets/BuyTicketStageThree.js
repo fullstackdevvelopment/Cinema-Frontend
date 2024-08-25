@@ -136,7 +136,7 @@ function BuyTicketStageThree() {
                           <h2>{singleData?.title}</h2>
                         </div>
                         <div className="buyTicket__stages__payment__block__content__desc__text__item">
-                          <p>Play Cinema, S SA</p>
+                          <p>Play Cinema, Hoktember ARM</p>
                         </div>
                         <div className="buyTicket__stages__payment__block__content__desc__text__item">
                           <p>{date}</p>
@@ -173,7 +173,7 @@ function BuyTicketStageThree() {
                   </div>
                   {user && (
                     <div className="buyTicket__stages__payment__personal__content">
-                      <p>{user.firstName}</p>
+                      <p>{`${user.firstName} ${user.lastName}`}</p>
                       <p>{user.email}</p>
                     </div>
                   )}

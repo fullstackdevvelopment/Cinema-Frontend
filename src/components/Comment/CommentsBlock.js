@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Stars from '../HomeComponent/Stars';
 
 function CommentsBlock(props) {
@@ -33,3 +34,12 @@ function CommentsBlock(props) {
 }
 
 export default CommentsBlock;
+
+CommentsBlock.propTypes = {
+  comment: PropTypes.string.isRequired,
+  userImage: PropTypes.string.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  voters: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+};

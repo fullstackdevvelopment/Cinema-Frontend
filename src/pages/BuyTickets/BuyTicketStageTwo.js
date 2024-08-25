@@ -21,7 +21,8 @@ function BuyTicketStageTwo() {
   const list = useSelector((state) => state.scheduleList.list);
   const filteredSchedule = list.filter((item) => item.id === parseInt(scheduleId, 10));
   const [selectedSeats, setSelectedSeats] = useState([]);
-
+  console.log(stage);
+  console.log(stageTwo);
   useEffect(() => {
     if (movieId) {
       (async () => {

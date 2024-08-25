@@ -63,7 +63,7 @@ function SignInComp() {
       }
       // eslint-disable-next-line no-shadow
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   }, [dispatch, userName, password]);
   return (

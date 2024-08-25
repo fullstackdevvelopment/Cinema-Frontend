@@ -23,7 +23,6 @@ function ResetPassword() {
       setStatus({
         error: result.payload.errors.email,
       });
-      console.log(status);
     }
   }, [dispatch, email, stage, status]);
   return (

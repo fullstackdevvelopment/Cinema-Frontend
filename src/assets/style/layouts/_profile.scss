@@ -30,189 +30,189 @@
       &:hover {
         background: #D89730;
         color: #000;
-        box-shadow: 6px 6px 35px 0 #FFFFFF1A inset,-6px -6px 22px 0 #00000080 inset;
+        box-shadow: 6px 6px 35px 0 #FFFFFF1A inset, -6px -6px 22px 0 #00000080 inset;
       }
 
       &:active {
         background: #A56808;
-        box-shadow: -6px -6px 22px 0 #00000080 inset,6px 6px 35px 0 #FFFFFF1A inset;
+        box-shadow: -6px -6px 22px 0 #00000080 inset, 6px 6px 35px 0 #FFFFFF1A inset;
         color: #fff;
       }
     }
   }
-}
 
-.profile__page {
-  background: #000;
-  border-radius: 50px;
-  padding-bottom: 50px;
-
-  &__change {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-
-    & button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
-      color: #e8920b;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      margin-right: 60px;
-      margin-bottom: 50px;
-      width: 15%;
-
-      & svg {
-        margin-left: 5px;
-        font-size: 15px;
-      }
-    }
-  }
-
-  & .buyTicket__stages__payment__card__content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  &__page {
     background: #000;
     border-radius: 50px;
-    padding: 30px 40px;
-  }
+    padding-bottom: 50px;
 
-  & p {
-    text-align: center;
-    font-size: 42px;
-    font-weight: 600;
-    line-height: 49.22px;
-    padding: 40px 0;
-  }
-
-  & .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    background: #194C53;
-    border-radius: 9px;
-    padding: 35px 20px;
-    position: relative;
-
-    &__view {
+    &__change {
+      width: 100%;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      width: 100%;
-      margin-bottom: 0;
-      z-index: 1;
+      justify-content: flex-end;
 
-      & p {
-        font-size: 42px;
-        font-weight: 900;
-        line-height: 49.22px;
-        color: #fff;
-      }
-    }
-
-    &__number {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      align-items: center;
-      margin-bottom: 60px;
-      z-index: 1;
-
-      & span {
-        color: #fff;
-        margin: 0 3px;
-        font-size: 18px;
-        font-weight: 900;
-        line-height: 49.22px;
+      & button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-colorPrimary.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+        color: #e8920b;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: 60px;
+        margin-bottom: 50px;
+        width: 15%;
 
         & svg {
-          width: 12px;
-          height: 12px;
+          margin-left: 5px;
+          font-size: 15px;
         }
-      }
-
-      & span:nth-child(4) {
-        margin-right: 20px;
-      }
-
-      & span:nth-child(5) {
-        margin-left: 20px;
-      }
-
-      & span:nth-child(8) {
-        margin-right: 20px;
-      }
-
-      & span:nth-child(9) {
-        margin-left: 20px;
-      }
-
-      & span:nth-child(12) {
-        margin-right: 20px;
-      }
-
-      & span:nth-child(13) {
-        margin-left: 20px;
       }
     }
 
-    &__owner {
+    & .buyTicket__stages__payment__card__content {
       width: 100%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      z-index: 1;
+      justify-content: center;
+      background: #000;
+      border-radius: 50px;
+      padding: 30px 40px;
+    }
 
-      &__name {
+    & p {
+      text-align: center;
+      font-size: 42px;
+      font-weight: 600;
+      line-height: 49.22px;
+      padding: 40px 0;
+    }
+
+    & .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      background: #194C53;
+      border-radius: 9px;
+      padding: 35px 20px;
+      position: relative;
+
+      &__view {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
+        width: 100%;
+        margin-bottom: 0;
+        z-index: 1;
 
         & p {
-          font-size: 20px;
-          font-weight: 600;
-          line-height: 23.44px;
+          font-size: 42px;
+          font-weight: 900;
+          line-height: 49.22px;
           color: #fff;
-          margin-right: 20px;
         }
       }
 
-      &__date {
+      &__number {
         display: flex;
         justify-content: center;
+        width: 100%;
         align-items: center;
-
-        & p {
-          font-size: 26.91px;
-          font-weight: 600;
-          line-height: 31.53px;
-          color: #fff;
-          margin-right: 4px;
-        }
+        margin-bottom: 60px;
+        z-index: 1;
 
         & span {
-          font-size: 26.91px;
-          font-weight: 600;
-          line-height: 31.53px;
           color: #fff;
+          margin: 0 3px;
+          font-size: 18px;
+          font-weight: 900;
+          line-height: 49.22px;
+
+          & svg {
+            width: 12px;
+            height: 12px;
+          }
+        }
+
+        & span:nth-child(4) {
+          margin-right: 20px;
+        }
+
+        & span:nth-child(5) {
+          margin-left: 20px;
+        }
+
+        & span:nth-child(8) {
+          margin-right: 20px;
+        }
+
+        & span:nth-child(9) {
+          margin-left: 20px;
+        }
+
+        & span:nth-child(12) {
+          margin-right: 20px;
+        }
+
+        & span:nth-child(13) {
+          margin-left: 20px;
         }
       }
 
-      &__cvc {
+      &__owner {
+        width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
+        z-index: 1;
 
-        & p {
-          font-weight: 600;
-          color: #fff;
-          margin-right: 4px;
-          font-size: 20px;
-          line-height: 23.44px;
+        &__name {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          & p {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 23.44px;
+            color: #fff;
+            margin-right: 20px;
+          }
+        }
+
+        &__date {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          & p {
+            font-size: 26.91px;
+            font-weight: 600;
+            line-height: 31.53px;
+            color: #fff;
+            margin-right: 4px;
+          }
+
+          & span {
+            font-size: 26.91px;
+            font-weight: 600;
+            line-height: 31.53px;
+            color: #fff;
+          }
+        }
+
+        &__cvc {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          & p {
+            font-weight: 600;
+            color: #fff;
+            margin-right: 4px;
+            font-size: 20px;
+            line-height: 23.44px;
+          }
         }
       }
     }

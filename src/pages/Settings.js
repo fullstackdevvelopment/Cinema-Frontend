@@ -63,6 +63,9 @@ function Settings() {
     const fields = {
       firstName, lastName, email, city, country, address, phone,
     };
+    if (fields.phone === '+374') {
+      fields.phone = '';
+    }
     Object.entries(fields).forEach(([key, value]) => {
       if (value) formData.append(key, value);
     });

@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Stars from './Stars';
 
 function Cart(props) {
@@ -32,3 +33,11 @@ function Cart(props) {
 }
 
 export default Cart;
+
+Cart.propTypes = {
+  moviePhoto: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  voters: PropTypes.number.isRequired,
+  movieId: PropTypes.number.isRequired,
+};

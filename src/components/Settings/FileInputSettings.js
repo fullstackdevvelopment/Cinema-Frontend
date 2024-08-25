@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
 function FileInputSettings(props) {
   const {
@@ -84,3 +85,13 @@ function FileInputSettings(props) {
 }
 
 export default FileInputSettings;
+
+FileInputSettings.propTypes = {
+  selectedFile: PropTypes.instanceOf(File),
+  setSelectedFile: PropTypes.func.isRequired,
+  setPhoto: PropTypes.func.isRequired,
+  errors: PropTypes.shape({
+    photo: PropTypes.string,
+  }),
+  photo: PropTypes.string,
+};

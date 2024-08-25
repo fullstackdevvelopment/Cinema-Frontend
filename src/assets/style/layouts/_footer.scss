@@ -66,9 +66,15 @@
     justify-content: space-between;
   }
 
+  &__block:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
   &__block {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     width: 100%;
 
@@ -159,7 +165,7 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     padding-left: 100px;
 

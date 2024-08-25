@@ -8,12 +8,10 @@ import { faCartShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-i
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment-timezone';
 import { PulseLoader, RingLoader } from 'react-spinners';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import DatePicker from 'react-datepicker';
 import Pagination from '../../helpers/Pagination';
 import { scheduleList } from '../../store/actions/scheduleList';
 import ScheduleItem from './ScheduleItem';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import 'react-datepicker/dist/react-datepicker.css';
 
 function ScheduleList() {
@@ -109,71 +107,70 @@ function ScheduleList() {
         </div>
       ) : (
         <>
+          <div className="schedule__filtracion">
+            <div className="schedule__filtracion__block">
+              <DatePicker
+                selected={selectedDate}
+                onChange={(date) => handleDateChange(date)}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="Date"
+              />
+              <DatePicker
+                selected={selectedHour}
+                onChange={(date) => handleHourChange(date)}
+                dateFormat="HH:mm"
+                placeholderText="Hour"
+                showTimeSelect
+                showTimeSelectOnly
+                timeCaption="Time"
+                timeIntervals={15}
+                timeFormat="HH:mm"
+              />
+            </div>
+            <div className="schedule__filtracion__search">
+              <input
+                className="sign__in__input"
+                type="text"
+                placeholder="Search"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </div>
+          </div>
           {paginatedSchedule?.length > 0 ? (
-            <div className="schedule__filtracion">
-              <div className="schedule__filtracion__block">
-                <DatePicker
-                  selected={selectedDate}
-                  onChange={(date) => handleDateChange(date)}
-                  dateFormat="yyyy-MM-dd"
-                  placeholderText="Date"
-                />
-                <DatePicker
-                  selected={selectedHour}
-                  onChange={(date) => handleHourChange(date)}
-                  dateFormat="HH:mm"
-                  placeholderText="Hour"
-                  showTimeSelect
-                  showTimeSelectOnly
-                  timeCaption="Time"
-                  timeIntervals={15}
-                  timeFormat="HH:mm"
-                />
-              </div>
-              <div className="schedule__filtracion__search">
-                <input
-                  className="sign__in__input"
-                  type="text"
-                  placeholder="Search"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                />
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </div>
+            <div className="schedule__dashboard__table__block">
+              {paginatedSchedule?.map((item) => (
+                <div key={item.id} className="schedule__dashboard__table__block__item">
+                  <ScheduleItem
+                    title={item.movie.title}
+                    duration={item.movie.duration}
+                    moviePhoto={item.movie.photos[0]?.moviePhoto}
+                    times={item.schedules[0]?.times}
+                    dates={item.schedules[0]?.date}
+                  />
+                  <div
+                    className="schedule__dashboard__table__block__item__btn"
+                    onClick={() => handleClickByTicket(item.movie.id, item.id)}
+                  >
+                    <Button>
+                      Buy Ticket
+                      <FontAwesomeIcon icon={faCartShopping} />
+                    </Button>
+                  </div>
+                </div>
+              ))}
+              <Pagination
+                totalPages={totalPages}
+                currentPage={currentPage}
+                handlePageChange={handlePageChange}
+              />
             </div>
           ) : (
             <div className="no__schedule">
               <p>There are no films to show at the moment</p>
             </div>
           )}
-
-          <div className="schedule__dashboard__table__block">
-            {paginatedSchedule?.map((item) => (
-              <div key={item.id} className="schedule__dashboard__table__block__item">
-                <ScheduleItem
-                  title={item.movie.title}
-                  duration={item.movie.duration}
-                  moviePhoto={item.movie.photos[0]?.moviePhoto}
-                  times={item.schedules[0]?.times}
-                  dates={item.schedules[0]?.date}
-                />
-                <div
-                  className="schedule__dashboard__table__block__item__btn"
-                  onClick={() => handleClickByTicket(item.movie.id, item.id)}
-                >
-                  <Button>
-                    Buy Ticket
-                    <FontAwesomeIcon icon={faCartShopping} />
-                  </Button>
-                </div>
-              </div>
-            ))}
-            <Pagination
-              totalPages={totalPages}
-              currentPage={currentPage}
-              handlePageChange={handlePageChange}
-            />
-          </div>
         </>
       )}
     </>

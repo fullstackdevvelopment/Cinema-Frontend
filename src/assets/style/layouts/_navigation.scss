@@ -1,17 +1,16 @@
-.cinema__nav{
+.cinema__nav {
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.cinema__nav__item{
-  color: rgb(217, 217, 217);
-  text-decoration: none;
-  font-family: Roboto, "sans-serif";
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 21px;
-  padding-right: 90px;
-  text-align: center;
+  &__item {
+    color: rgb(217, 217, 217);
+    text-decoration: none;
+    font-family: Roboto, "sans-serif";
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 21px;
+    padding-right: 90px;
+    text-align: center;
+  }
 }
-
